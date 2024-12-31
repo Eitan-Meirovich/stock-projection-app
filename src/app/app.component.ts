@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { StockProjectionComponent } from './stock-projection/stock-projection.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [CommonModule, StockProjectionComponent],
+  template: `
+    <app-stock-projection></app-stock-projection>
+  `,
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'stock-projection-app';
-}
+export class AppComponent { }
