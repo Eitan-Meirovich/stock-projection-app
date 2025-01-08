@@ -1,0 +1,1 @@
+2024-12-17 14:46:33,992 - src.utils.logging_config - ERROR - Error in data processing: Missing required columns: ['Date', 'Product_Code', 'Sales']
