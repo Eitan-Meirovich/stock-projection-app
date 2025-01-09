@@ -6,7 +6,64 @@ from io import BytesIO
 
 # Configuración de la página (debe ser la primera línea de Streamlit)
 st.set_page_config(layout="wide", page_title="Dashboard de Proyección y Ventas")
-
+# Estilo general del dashboard
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #e6f7ff;
+    }
+    h1, h2, h3 {
+        color: #003366;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+    .metric-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 40px 0;
+    }
+    }
+    .metric {
+        width: 20%;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-weight: bold;
+        font-color: Black;
+    }
+    .metric h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #003366;
+    }
+    .metric p {
+        margin: 5px 0 0;
+        font-size: 40px;
+        color: black;
+    }
+    .metric .growth-positive {
+        color: #003366;
+    }
+    .metric .growth-negative {
+        color: red;
+    }
+    .content {
+        text-align: center;
+    }
+    .stTabs {
+        margin-top: 20px;
+    }
+    .stDataFrame {
+        margin: auto;
+        width: 90%;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 file_path = './demand_forecasting_project/data/output/merged_data.csv'
 
 # Cargar los datos ya procesados y reestructurarlos
@@ -144,13 +201,33 @@ st.header("Indicadores Clave")
 # Calcular los totales
 total_projection = table_data["Projection"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False).astype(float).sum()
 total_sales_2024 = table_data["Venta 2024"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False).astype(float).sum()
+growth_percentage = ((  total_projection-total_sales_2024) / total_sales_2024) * 100 if total_sales_2024 != 0 else 0
 
 # Formatear los totales
 formatted_total_projection = f"{total_projection:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
 formatted_total_sales_2024 = f"{total_sales_2024:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+formatted_growth_percentage = f"{growth_percentage:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
-st.metric(label="Total Proyección", value=f"{formatted_total_projection} Kg")
-st.metric(label="Total Ventas 2024", value=f"{formatted_total_sales_2024} Kg")
+
+st.markdown(
+    f"""
+    <div class="metric-container">
+        <div class="metric">
+            <h2>Proyección</h2>
+            <p>{formatted_total_projection} Kg</p>
+        </div>
+        <div class="metric">
+            <h2>2024</h2>
+            <p>{formatted_total_sales_2024} Kg</p>
+        </div>
+        <div class="metric">
+            <h2>% Crecimiento</h2>
+            <p class="{'growth-positive' if growth_percentage >= 0 else 'growth-negative'}">{formatted_growth_percentage}%</p>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Tabs para mostrar la tabla y la gráfica
 st.header("Resultados")
@@ -158,7 +235,7 @@ tab1, tab2 = st.tabs(["Tabla", "Gráfica"])
 
 with tab1:
     st.subheader("Tabla de Proyecciones y Ventas")
-    st.dataframe(table_data, height=300)
+    st.dataframe(table_data.style.set_properties(**{'text-align': 'center'}), height=400,width=1000)
 
 with tab2:
     st.subheader("Gráfica de Proyección vs. Ventas")
