@@ -91,12 +91,12 @@ def main():
             st.error(f"Error al cargar el archivo: {e}")
             return None
 
-    def process_data(df, grouping_option, view_type):
+    def process_data(df, grouping_option, view_type, safety_stock):
         meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
         for i, mes in enumerate(meses):
             if i == 0:
-                df[mes] = df['Stock Total'] - df[mes]
+                df[mes] = df['Stock Total'] - df[mes]+safety_stock
             else:
                 prev_month = meses[i - 1]
                 df[mes] = df[prev_month] - df[mes]
