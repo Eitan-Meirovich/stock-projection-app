@@ -91,7 +91,8 @@ def main():
             st.error(f"Error al cargar el archivo: {e}")
             return None
 
-    def process_data(df, grouping_option, view_type, safety_stock):
+    def process_data(df, safety_stock, grouping_option, view_type):
+        
         meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
         for i, mes in enumerate(meses):
@@ -181,8 +182,9 @@ def main():
         st.title("Dashboard de Flujo de Stock")
 
         st.sidebar.header("Filtros")
-
-        safety_stock = st.sidebar.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0)
+        
+        safety_stock = st.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0, key="safety_stock_input")
+        
         grouping_option = st.sidebar.radio(
             "Selecciona el nivel de agrupación:",
             ["Super Familia", "Familia", "Codigo Producto"]
@@ -221,13 +223,13 @@ def main():
             )
             filtered_data = data[(data["Familia"] == family_filter) & (data["Codigo Producto"].isin(product_filter))]
 
-        grouped_data = process_data(filtered_data, grouping_option, view_option)
+        grouped_data = process_data(filtered_data, safety_stock, grouping_option, view_option)
 
         tab1, tab2 = st.tabs(["Tabla Consolidada", "Gráficos"])
 
         with tab1:
             st.subheader("Stock de Seguridad y Datos Consolidados")
-
+            safety_stock = st.sidebar.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0)
             simulated_data = simulate_stock_with_safety(grouped_data, safety_stock)
         
             if view_option == "Trimestres":
