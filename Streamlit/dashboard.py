@@ -64,26 +64,12 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-file_path = './demand_forecasting_project/data/output/merged_data.csv'
+file_path = './demand_forecasting_project/data/output/merged.csv'
 
 # Cargar los datos ya procesados y reestructurarlos
 @st.cache_data
 def load_data():
-    # Leer el archivo original
-    merged_data = pd.read_csv(file_path)
-    # Convertir la columna Date a formato datetime y extraer el mes
-    merged_data['Date'] = pd.to_datetime(merged_data['Date'])
-    merged_data['Mes'] = merged_data['Date'].dt.month
-    # Crear columnas para las ventas históricas según el año
-    merged_data['Venta 2024'] = merged_data['Sales'].where(merged_data['Date'].dt.year == 2024, None)
-    merged_data['Venta 2023'] = merged_data['Sales'].where(merged_data['Date'].dt.year == 2023, None)
-    merged_data['Venta 2022'] = merged_data['Sales'].where(merged_data['Date'].dt.year == 2022, None)
-    # Seleccionar y reestructurar columnas
-    restructured_data = merged_data[[
-        'Mes', 'SuperFamily', 'Familia', 'Codigo Producto',
-        'Projection', 'Venta 2024', 'Venta 2023', 'Venta 2022'
-    ]]
-    return restructured_data
+    return pd.read_csv(file_path)
 
 data = load_data()
 
@@ -239,7 +225,7 @@ with tab1:
 
 with tab2:
     st.subheader("Gráfica de Proyección vs. Ventas")
-    fig = px.line(table_data, x=("Trimestre" if view_type == "Trimestres" else "Mes"), y=["Projection", "Venta 2024", "Venta 2023"],
+    fig = px.line(table_data, x=("Trimestre" if view_type == "Trimestres" else "Mes"), y=["Projection", "Venta 2024", "Venta 2023","Venta 2022"],
                   labels={"value": "Kg", "variable": "Categoría"},
                   title="Proyección vs. Ventas", markers=True)
     st.plotly_chart(fig, use_container_width=True)

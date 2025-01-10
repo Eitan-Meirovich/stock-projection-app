@@ -1,9 +1,12 @@
 import pandas as pd
 import json
 
+
+
 # Ruta del archivo de entrada
-input_file_path = 'data/input/data.xlsx'
-output_hierarchy_path = 'data/hierarchy_mapping.json'
+input_file_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\input\data.xlsx'
+
+output_hierarchy_path =r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\hierarchy_mapping.json'
 
 # Cargar datos desde Excel
 data = pd.read_excel(input_file_path)

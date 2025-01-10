@@ -1,9 +1,70 @@
 import subprocess
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 from io import BytesIO
-file_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\output\merged_data.csv'
+
+# Configuración de la página (debe ser la primera línea de Streamlit)
+st.set_page_config(layout="wide", page_title="Dashboard de Proyección y Ventas")
+# Estilo general del dashboard
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #e6f7ff;
+    }
+    h1, h2, h3 {
+        color: #003366;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+    .metric-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 40px 0;
+    }
+    }
+    .metric {
+        width: 20%;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-weight: bold;
+        font-color: Black;
+    }
+    .metric h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #003366;
+    }
+    .metric p {
+        margin: 5px 0 0;
+        font-size: 40px;
+        color: black;
+    }
+    .metric .growth-positive {
+        color: #003366;
+    }
+    .metric .growth-negative {
+        color: red;
+    }
+    .content {
+        text-align: center;
+    }
+    .stTabs {
+        margin-top: 20px;
+    }
+    .stDataFrame {
+        margin: auto;
+        width: 90%;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+file_path = './demand_forecasting_project/data/output/merged_data.csv'
 
 # Cargar los datos ya procesados y reestructurarlos
 @st.cache_data
@@ -29,17 +90,17 @@ data = load_data()
 # Título del Dashboard
 st.title("Dashboard de Proyección y Ventas")
 
+# Barra lateral para filtros
+st.sidebar.header("Filtros")
+
 # Selección del nivel de agrupación
-st.sidebar.header("Tabla de datos consolidada")
 grouping_level = st.sidebar.radio(
     "Selecciona el nivel de agrupación:",
     ("Super Familia", "Familia", "Codigo Producto"),
     index=0
 )
 
-
 # Selección de vista: Trimestre o Mes
-st.sidebar.header("Vista de datos")
 view_type = st.sidebar.radio(
     "Selecciona la vista de la tabla:",
     ("Trimestres", "Meses"),
@@ -55,14 +116,14 @@ if grouping_level == "Super Familia":
     filtered_data = filtered_data.copy()
     if view_type == "Trimestres":
         filtered_data["Trimestre"] = ((filtered_data["Mes"] - 1) // 3) + 1
-        table_data = filtered_data.groupby(["SuperFamily","Trimestre" ], as_index=False).agg({
+        table_data = filtered_data.groupby(["SuperFamily", "Trimestre"], as_index=False).agg({
             "Projection": "sum",
             "Venta 2024": "sum",
             "Venta 2023": "sum",
             "Venta 2022": "sum"
         })
     else:
-        table_data = filtered_data.groupby(["SuperFamily","Mes" ], as_index=False).agg({
+        table_data = filtered_data.groupby(["SuperFamily", "Mes"], as_index=False).agg({
             "Projection": "sum",
             "Venta 2024": "sum",
             "Venta 2023": "sum",
@@ -83,14 +144,14 @@ elif grouping_level == "Familia":
     filtered_data = filtered_data.copy()
     if view_type == "Trimestres":
         filtered_data["Trimestre"] = ((filtered_data["Mes"] - 1) // 3) + 1
-        table_data = filtered_data.groupby([ "Familia","Trimestre"], as_index=False).agg({
+        table_data = filtered_data.groupby(["Familia", "Trimestre"], as_index=False).agg({
             "Projection": "sum",
             "Venta 2024": "sum",
             "Venta 2023": "sum",
             "Venta 2022": "sum"
         })
     else:
-        table_data = filtered_data.groupby(["Familia","Mes" ], as_index=False).agg({
+        table_data = filtered_data.groupby(["Familia", "Mes"], as_index=False).agg({
             "Projection": "sum",
             "Venta 2024": "sum",
             "Venta 2023": "sum",
@@ -127,45 +188,61 @@ elif grouping_level == "Codigo Producto":
             "Venta 2022": "sum"
         })
 
-# Formatear los números de la tabla
-table_data["Projection"] = table_data["Projection"].apply(lambda x: f"{x:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."))
-table_data["Venta 2024"] = table_data["Venta 2024"].apply(lambda x: f"{x:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."))
-table_data["Venta 2023"] = table_data["Venta 2023"].apply(lambda x: f"{x:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."))
-table_data["Venta 2022"] = table_data["Venta 2022"].apply(lambda x: f"{x:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."))
+# Formatear columnas numéricas
+columns_to_format = ["Projection", "Venta 2024", "Venta 2023", "Venta 2022"]
+for column in columns_to_format:
+    if column in table_data.columns:
+        table_data[column] = table_data[column].apply(
+            lambda x: f"{int(x):,}".replace(",", "X").replace(".", ",").replace("X", ".") if pd.notnull(x) else x
+        )
 
-# Mostrar la tabla
-st.subheader("Tabla de Proyecciones y Ventas")
-columns_to_display = table_data.columns.tolist()
-st.dataframe(table_data)
+# Mostrar métricas clave
+st.header("Indicadores Clave")
+# Calcular los totales
+total_projection = table_data["Projection"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False).astype(float).sum()
+total_sales_2024 = table_data["Venta 2024"].str.replace(".", "", regex=False).str.replace(",", ".", regex=False).astype(float).sum()
+growth_percentage = ((  total_projection-total_sales_2024) / total_sales_2024) * 100 if total_sales_2024 != 0 else 0
 
-# Gráfica de líneas
-st.subheader("Gráfica de Proyección vs. Ventas")
-fig, ax = plt.subplots()
-x_axis = "Trimestre" if view_type == "Trimestres" else "Mes"
-if grouping_level == "Super Familia":
-    for superfamily in table_data["SuperFamily"].unique():
-        superfamily_data = table_data[table_data["SuperFamily"] == superfamily]
-        ax.plot(superfamily_data[x_axis], superfamily_data["Projection"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Proyección {superfamily}", linestyle="--")
-        ax.plot(superfamily_data[x_axis], superfamily_data["Venta 2024"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2024 {superfamily}", linestyle="-")
-        ax.plot(superfamily_data[x_axis], superfamily_data["Venta 2023"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2023 {superfamily}", linestyle="-")
-elif grouping_level == "Familia":
-    for family in table_data["Familia"].unique():
-        family_data = table_data[table_data["Familia"] == family]
-        ax.plot(family_data[x_axis], family_data["Projection"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Proyección {family}", linestyle="--")
-        ax.plot(family_data[x_axis], family_data["Venta 2024"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2024 {family}", linestyle="-")
-        ax.plot(family_data[x_axis], family_data["Venta 2023"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2023 {family}", linestyle="-")
-else:
-    for product in table_data["Codigo Producto"].unique():
-        product_data = table_data[table_data["Codigo Producto"] == product]
-        ax.plot(product_data[x_axis], product_data["Projection"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Proyección {product}", linestyle="--")
-        ax.plot(product_data[x_axis], product_data["Venta 2024"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2024 {product}", linestyle="-")
-        ax.plot(product_data[x_axis], product_data["Venta 2023"].str.replace(".", "").str.replace(",", ".").astype(float), label=f"Ventas 2023 {product}", linestyle="-")
+# Formatear los totales
+formatted_total_projection = f"{total_projection:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+formatted_total_sales_2024 = f"{total_sales_2024:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+formatted_growth_percentage = f"{growth_percentage:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
-ax.set_xlabel("Trimestre" if view_type == "Trimestres" else "Mes")
-ax.set_ylabel("Kg")
-ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3)
-ax.grid(True)
-st.pyplot(fig)
+
+st.markdown(
+    f"""
+    <div class="metric-container">
+        <div class="metric">
+            <h2>Proyección</h2>
+            <p>{formatted_total_projection} Kg</p>
+        </div>
+        <div class="metric">
+            <h2>2024</h2>
+            <p>{formatted_total_sales_2024} Kg</p>
+        </div>
+        <div class="metric">
+            <h2>% Crecimiento</h2>
+            <p class="{'growth-positive' if growth_percentage >= 0 else 'growth-negative'}">{formatted_growth_percentage}%</p>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Tabs para mostrar la tabla y la gráfica
+st.header("Resultados")
+tab1, tab2 = st.tabs(["Tabla", "Gráfica"])
+
+with tab1:
+    st.subheader("Tabla de Proyecciones y Ventas")
+    st.dataframe(table_data.style.set_properties(**{'text-align': 'center'}), height=400,width=1000)
+
+with tab2:
+    st.subheader("Gráfica de Proyección vs. Ventas")
+    fig = px.line(table_data, x=("Trimestre" if view_type == "Trimestres" else "Mes"), y=["Projection", "Venta 2024", "Venta 2023"],
+                  labels={"value": "Kg", "variable": "Categoría"},
+                  title="Proyección vs. Ventas", markers=True)
+    st.plotly_chart(fig, use_container_width=True)
 
 # Descargar la tabla filtrada como Excel
 def download_excel(data):
@@ -178,7 +255,7 @@ def download_excel(data):
 st.subheader("Descargar Datos Filtrados")
 excel_data = download_excel(table_data)
 st.download_button(
-    label="Descargar Excel",
+    label="Descargar Tabla en Excel",
     data=excel_data,
     file_name="Proyecciones_y_Ventas.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"

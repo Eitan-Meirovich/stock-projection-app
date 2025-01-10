@@ -1,0 +1,1597 @@
+Project structure for: C:\Users\Ukryl\stock-projection-app
+
+├── .devcontainer
+│   └── devcontainer.json
+├── demand_forecasting_project
+│   ├── .vscode
+│   │   └── settings.json
+│   ├── __init__.py
+│   ├── Consolidado_resultados.py
+│   ├── data
+│   │   ├── hierarchy_mapping.json
+│   │   ├── input
+│   │   │   └── data.xlsx
+│   │   ├── output
+│   │   ├── processed
+│   │   │   ├── Bebé
+│   │   │   │   └── __init__.py
+│   │   │   ├── Invierno
+│   │   │   │   └── __init__.PY
+│   │   │   └── Verano
+│   │   │       └── __init__.py
+│   │   ├── prueba.py
+│   │   └── raw
+│   │       └── familia_mapping.xlsx
+│   ├── estructura_directorio.txt
+│   ├── estructura_proyecto.txt
+│   ├── logs
+│   │   └── data_processing_20241217_144550.log
+│   ├── Main.py
+│   ├── merged_data.py
+│   ├── run_clustering.py
+│   ├── run_processor.py
+│   └── src
+│       ├── __init__.py
+│       ├── data
+│       │   ├── __init__.py
+│       │   ├── agrupación_data_Super_familia.py
+│       │   ├── Data_groups.py
+│       │   ├── data_loader.py
+│       │   ├── data_por_familia.py
+│       │   ├── data_processor.py
+│       │   ├── hierarchy_map.py
+│       │   └── prueba.py
+│       ├── features
+│       │   ├── __init__.py
+│       │   ├── analisis_descriptivo.py
+│       │   ├── cluster_analisys.py
+│       │   ├── Clusterización_mejorada.py
+│       │   ├── engineering.py
+│       │   └── estadística_descriptiva_clusters.py
+│       ├── models
+│       │   ├── __init__.py
+│       │   ├── Bebé
+│       │   │   ├── __init__.py
+│       │   │   ├── Análisis_Bebe.py
+│       │   │   ├── Holt_Sarima.py
+│       │   │   ├── Holt_winter_bebé.py
+│       │   │   ├── Holt_winter_bebé24.py
+│       │   │   ├── Prophet.py
+│       │   │   ├── Proyecciones_25.py
+│       │   │   ├── SARIMA.py
+│       │   │   ├── Top_down_24.py
+│       │   │   └── Top_down_25.py
+│       │   ├── Cinta,Borlas&Cola_ratón
+│       │   │   ├── __init__.py
+│       │   │   ├── Data_Correction.py
+│       │   │   ├── Prophet_demanda.py
+│       │   │   ├── Sarima_model.py
+│       │   │   └── xg_boost.py
+│       │   ├── Fantasía
+│       │   │   ├── __init__.py
+│       │   │   └── Analisis.py
+│       │   ├── Hilos_Verano
+│       │   │   ├── __init__.py
+│       │   │   ├── Análisis_Verano.py
+│       │   │   ├── comparación_modelos.py
+│       │   │   ├── Proyección_Verano.py
+│       │   │   ├── Proyección_Verano_24.py
+│       │   │   ├── Top_Down_Verano_24.py
+│       │   │   └── Top_Down_Verano_25.py
+│       │   └── Invierno
+│       │       ├── __init__.py
+│       │       ├── Análisis_invierno.py
+│       │       ├── Holt_Sarima.py
+│       │       ├── Holt_Sarima25.py
+│       │       ├── Proyección_2024.py
+│       │       ├── Top_Down.py
+│       │       └── Top_Down_2024.py
+│       ├── pipeline
+│       │   ├── __init__.py
+│       ├── utils
+│       │   ├── __init__.py
+│       │   └── logging_config.py
+│       └── visualization
+│           ├── análisis.visual.py
+│           └── tree.py
+├── project_tree.py
+├── requirements.txt
+├── respaldo.py
+├── Stock_Optimization
+│   ├── __init__.py
+│   ├── config.py
+│   ├── Data
+│   │   ├── __init__.py
+│   │   ├── combined_stock_forecast.csv
+│   │   ├── combined_with_generated_date.csv
+│   │   ├── combined_with_projections.csv
+│   │   ├── consolidated_forecast.csv
+│   │   ├── relation_cone_skein.xlsx
+│   │   └── stock_data.csv
+│   ├── optimization_model.py
+│   ├── README.md
+│   ├── Results
+│   │   ├── Bebé
+│   │   │   ├── Baby Jakard
+│   │   │   │   ├── 5602IMD181306_details.csv
+│   │   │   │   ├── 5602IMD181306_stock_projection.png
+│   │   │   │   ├── 5602IMD181307_details.csv
+│   │   │   │   ├── 5602IMD181307_stock_projection.png
+│   │   │   │   ├── 5602IMD181309_details.csv
+│   │   │   │   ├── 5602IMD181309_stock_projection.png
+│   │   │   │   ├── 5602IMD181310_details.csv
+│   │   │   │   ├── 5602IMD181310_stock_projection.png
+│   │   │   │   ├── 5602IMD181311_details.csv
+│   │   │   │   ├── 5602IMD181311_stock_projection.png
+│   │   │   │   ├── 5602IMD181315_details.csv
+│   │   │   │   ├── 5602IMD181315_stock_projection.png
+│   │   │   │   ├── 5602IMD181316_details.csv
+│   │   │   │   ├── 5602IMD181316_stock_projection.png
+│   │   │   │   ├── 5602IMD181317_details.csv
+│   │   │   │   ├── 5602IMD181317_stock_projection.png
+│   │   │   │   ├── 5602IMD181318_details.csv
+│   │   │   │   ├── 5602IMD181318_stock_projection.png
+│   │   │   │   ├── 5602IMD181319_details.csv
+│   │   │   │   └── 5602IMD181319_stock_projection.png
+│   │   │   ├── Baby Soft
+│   │   │   │   ├── 1148AN1010003_details.csv
+│   │   │   │   ├── 1148AN1010003_stock_projection.png
+│   │   │   │   ├── 1148AN1010014_details.csv
+│   │   │   │   ├── 1148AN1010014_stock_projection.png
+│   │   │   │   ├── 1148AN1010024_details.csv
+│   │   │   │   ├── 1148AN1010024_stock_projection.png
+│   │   │   │   ├── 1148AN1010026_details.csv
+│   │   │   │   ├── 1148AN1010026_stock_projection.png
+│   │   │   │   ├── 1148AN1010034_details.csv
+│   │   │   │   ├── 1148AN1010034_stock_projection.png
+│   │   │   │   ├── 1148AN1010039_details.csv
+│   │   │   │   ├── 1148AN1010039_stock_projection.png
+│   │   │   │   ├── 1148AN1010041_details.csv
+│   │   │   │   ├── 1148AN1010041_stock_projection.png
+│   │   │   │   ├── 1148AN1010050_details.csv
+│   │   │   │   ├── 1148AN1010050_stock_projection.png
+│   │   │   │   ├── 1148AN1010081_details.csv
+│   │   │   │   ├── 1148AN1010081_stock_projection.png
+│   │   │   │   ├── 1148AN1010229_details.csv
+│   │   │   │   ├── 1148AN1010229_stock_projection.png
+│   │   │   │   ├── 1148AN1010439_details.csv
+│   │   │   │   ├── 1148AN1010439_stock_projection.png
+│   │   │   │   ├── 1148AN1010730_details.csv
+│   │   │   │   ├── 1148AN1010730_stock_projection.png
+│   │   │   │   ├── 1148AN1010734_details.csv
+│   │   │   │   ├── 1148AN1010734_stock_projection.png
+│   │   │   │   ├── 1148AN1010812_details.csv
+│   │   │   │   ├── 1148AN1010812_stock_projection.png
+│   │   │   │   ├── 1148AN1010831_details.csv
+│   │   │   │   ├── 1148AN1010831_stock_projection.png
+│   │   │   │   ├── 1148AN1010875_details.csv
+│   │   │   │   ├── 1148AN1010875_stock_projection.png
+│   │   │   │   ├── 1148AN1010888_details.csv
+│   │   │   │   ├── 1148AN1010888_stock_projection.png
+│   │   │   │   ├── 1148AN1011102_details.csv
+│   │   │   │   ├── 1148AN1011102_stock_projection.png
+│   │   │   │   ├── 1148AN1011302_details.csv
+│   │   │   │   ├── 1148AN1011302_stock_projection.png
+│   │   │   │   ├── 1148AN1013401_details.csv
+│   │   │   │   ├── 1148AN1013401_stock_projection.png
+│   │   │   │   ├── 1148AN1013602_details.csv
+│   │   │   │   ├── 1148AN1013602_stock_projection.png
+│   │   │   │   ├── 1148AN1013902_details.csv
+│   │   │   │   ├── 1148AN1013902_stock_projection.png
+│   │   │   │   ├── 1148AN1014204_details.csv
+│   │   │   │   ├── 1148AN1014204_stock_projection.png
+│   │   │   │   ├── 1148AN1016402_details.csv
+│   │   │   │   ├── 1148AN1016402_stock_projection.png
+│   │   │   │   ├── 1148AN1018902_details.csv
+│   │   │   │   └── 1148AN1018902_stock_projection.png
+│   │   │   ├── Bebe 100
+│   │   │   │   ├── 5615IMD100208_details.csv
+│   │   │   │   ├── 5615IMD100208_stock_projection.png
+│   │   │   │   ├── 5615IMD100214_details.csv
+│   │   │   │   ├── 5615IMD100214_stock_projection.png
+│   │   │   │   ├── 5615IMD100215_details.csv
+│   │   │   │   ├── 5615IMD100215_stock_projection.png
+│   │   │   │   ├── 5615IMD100217_details.csv
+│   │   │   │   ├── 5615IMD100217_stock_projection.png
+│   │   │   │   ├── 5615IMD100229_details.csv
+│   │   │   │   ├── 5615IMD100229_stock_projection.png
+│   │   │   │   ├── 5615IMD100247_details.csv
+│   │   │   │   ├── 5615IMD100247_stock_projection.png
+│   │   │   │   ├── 5615IMD100256_details.csv
+│   │   │   │   ├── 5615IMD100256_stock_projection.png
+│   │   │   │   ├── 5615IMD101036_details.csv
+│   │   │   │   ├── 5615IMD101036_stock_projection.png
+│   │   │   │   ├── 5615IMD101199_details.csv
+│   │   │   │   ├── 5615IMD101199_stock_projection.png
+│   │   │   │   ├── 5615IMD101291_details.csv
+│   │   │   │   ├── 5615IMD101291_stock_projection.png
+│   │   │   │   ├── 5615IMD101292_details.csv
+│   │   │   │   ├── 5615IMD101292_stock_projection.png
+│   │   │   │   ├── 5615IMD102197_details.csv
+│   │   │   │   ├── 5615IMD102197_stock_projection.png
+│   │   │   │   ├── 5615IMD102587_details.csv
+│   │   │   │   ├── 5615IMD102587_stock_projection.png
+│   │   │   │   ├── 5615IMD103641_details.csv
+│   │   │   │   ├── 5615IMD103641_stock_projection.png
+│   │   │   │   ├── 5615IMD104895_details.csv
+│   │   │   │   ├── 5615IMD104895_stock_projection.png
+│   │   │   │   ├── 5615IMD110094_details.csv
+│   │   │   │   ├── 5615IMD110094_stock_projection.png
+│   │   │   │   ├── 5615IMD123070_details.csv
+│   │   │   │   ├── 5615IMD123070_stock_projection.png
+│   │   │   │   ├── 5615IMD199054_details.csv
+│   │   │   │   └── 5615IMD199054_stock_projection.png
+│   │   │   ├── Lolipop
+│   │   │   │   ├── 5601IMD180430_details.csv
+│   │   │   │   ├── 5601IMD180430_stock_projection.png
+│   │   │   │   ├── 5601IMD180431_details.csv
+│   │   │   │   ├── 5601IMD180431_stock_projection.png
+│   │   │   │   ├── 5601IMD180432_details.csv
+│   │   │   │   ├── 5601IMD180432_stock_projection.png
+│   │   │   │   ├── 5601IMD180433_details.csv
+│   │   │   │   ├── 5601IMD180433_stock_projection.png
+│   │   │   │   ├── 5601IMD180434_details.csv
+│   │   │   │   ├── 5601IMD180434_stock_projection.png
+│   │   │   │   ├── 5601IMD180437_details.csv
+│   │   │   │   ├── 5601IMD180437_stock_projection.png
+│   │   │   │   ├── 5601IMD180440_details.csv
+│   │   │   │   ├── 5601IMD180440_stock_projection.png
+│   │   │   │   ├── 5601IMD180563_details.csv
+│   │   │   │   ├── 5601IMD180563_stock_projection.png
+│   │   │   │   ├── 5601IMD181117_details.csv
+│   │   │   │   └── 5601IMD181117_stock_projection.png
+│   │   │   └── Super Nene
+│   │   │       ├── 1140NA1010001_details.csv
+│   │   │       ├── 1140NA1010001_stock_projection.png
+│   │   │       ├── 1140NA1010003_details.csv
+│   │   │       ├── 1140NA1010003_stock_projection.png
+│   │   │       ├── 1140NA1010004_details.csv
+│   │   │       ├── 1140NA1010004_stock_projection.png
+│   │   │       ├── 1140NA1010005_details.csv
+│   │   │       ├── 1140NA1010005_stock_projection.png
+│   │   │       ├── 1140NA1010007_details.csv
+│   │   │       ├── 1140NA1010007_stock_projection.png
+│   │   │       ├── 1140NA1010008_details.csv
+│   │   │       ├── 1140NA1010008_stock_projection.png
+│   │   │       ├── 1140NA1010009_details.csv
+│   │   │       ├── 1140NA1010009_stock_projection.png
+│   │   │       ├── 1140NA1010011_details.csv
+│   │   │       ├── 1140NA1010011_stock_projection.png
+│   │   │       ├── 1140NA1010026_details.csv
+│   │   │       ├── 1140NA1010026_stock_projection.png
+│   │   │       ├── 1140NA1010033_details.csv
+│   │   │       ├── 1140NA1010033_stock_projection.png
+│   │   │       ├── 1140NA1010034_details.csv
+│   │   │       ├── 1140NA1010034_stock_projection.png
+│   │   │       ├── 1140NA1010073_details.csv
+│   │   │       ├── 1140NA1010073_stock_projection.png
+│   │   │       ├── 1140NA1010439_details.csv
+│   │   │       ├── 1140NA1010439_stock_projection.png
+│   │   │       ├── 1140NA1010730_details.csv
+│   │   │       ├── 1140NA1010730_stock_projection.png
+│   │   │       ├── 1140NA1010731_details.csv
+│   │   │       ├── 1140NA1010731_stock_projection.png
+│   │   │       ├── 1140NA1010732_details.csv
+│   │   │       ├── 1140NA1010732_stock_projection.png
+│   │   │       ├── 1140NA1010734_details.csv
+│   │   │       ├── 1140NA1010734_stock_projection.png
+│   │   │       ├── 1140NA1010829_details.csv
+│   │   │       ├── 1140NA1010829_stock_projection.png
+│   │   │       ├── 1140NA1011102_details.csv
+│   │   │       ├── 1140NA1011102_stock_projection.png
+│   │   │       ├── 1140NA1011302_details.csv
+│   │   │       ├── 1140NA1011302_stock_projection.png
+│   │   │       ├── 1140NA1013303_details.csv
+│   │   │       ├── 1140NA1013303_stock_projection.png
+│   │   │       ├── 1140NA1013952_details.csv
+│   │   │       ├── 1140NA1013952_stock_projection.png
+│   │   │       ├── 1140NA1016902_details.csv
+│   │   │       ├── 1140NA1016902_stock_projection.png
+│   │   │       ├── 1140NA1018902_details.csv
+│   │   │       └── 1140NA1018902_stock_projection.png
+│   │   ├── consolidado_datos.csv
+│   │   ├── Invierno
+│   │   │   ├── Batik Soft
+│   │   │   │   ├── 5618IMOR10001_details.csv
+│   │   │   │   ├── 5618IMOR10001_stock_projection.png
+│   │   │   │   ├── 5618IMOR10002_details.csv
+│   │   │   │   ├── 5618IMOR10002_stock_projection.png
+│   │   │   │   ├── 5618IMOR10003_details.csv
+│   │   │   │   ├── 5618IMOR10003_stock_projection.png
+│   │   │   │   ├── 5618IMOR10004_details.csv
+│   │   │   │   ├── 5618IMOR10004_stock_projection.png
+│   │   │   │   ├── 5618IMOR10005_details.csv
+│   │   │   │   ├── 5618IMOR10005_stock_projection.png
+│   │   │   │   ├── 5618IMOR10006_details.csv
+│   │   │   │   ├── 5618IMOR10006_stock_projection.png
+│   │   │   │   ├── 5618IMOR10007_details.csv
+│   │   │   │   ├── 5618IMOR10007_stock_projection.png
+│   │   │   │   ├── 5618IMOR10008_details.csv
+│   │   │   │   ├── 5618IMOR10008_stock_projection.png
+│   │   │   │   ├── 5618IMOR10009_details.csv
+│   │   │   │   ├── 5618IMOR10009_stock_projection.png
+│   │   │   │   ├── 5618IMOR10010_details.csv
+│   │   │   │   └── 5618IMOR10010_stock_projection.png
+│   │   │   ├── Bonbon Classic
+│   │   │   │   ├── 5248IM0108200_details.csv
+│   │   │   │   ├── 5248IM0108200_stock_projection.png
+│   │   │   │   ├── 5248IM0108204_details.csv
+│   │   │   │   ├── 5248IM0108204_stock_projection.png
+│   │   │   │   ├── 5248IM0108206_details.csv
+│   │   │   │   ├── 5248IM0108206_stock_projection.png
+│   │   │   │   ├── 5248IM0108207_details.csv
+│   │   │   │   ├── 5248IM0108207_stock_projection.png
+│   │   │   │   ├── 5248IM0108209_details.csv
+│   │   │   │   ├── 5248IM0108209_stock_projection.png
+│   │   │   │   ├── 5248IM0108211_details.csv
+│   │   │   │   ├── 5248IM0108211_stock_projection.png
+│   │   │   │   ├── 5248IM0108217_details.csv
+│   │   │   │   ├── 5248IM0108217_stock_projection.png
+│   │   │   │   ├── 5248IM0108219_details.csv
+│   │   │   │   ├── 5248IM0108219_stock_projection.png
+│   │   │   │   ├── 5248IM0108220_details.csv
+│   │   │   │   ├── 5248IM0108220_stock_projection.png
+│   │   │   │   ├── 5248IM0108221_details.csv
+│   │   │   │   ├── 5248IM0108221_stock_projection.png
+│   │   │   │   ├── 5248IM0108223_details.csv
+│   │   │   │   ├── 5248IM0108223_stock_projection.png
+│   │   │   │   ├── 5248IM0108224_details.csv
+│   │   │   │   ├── 5248IM0108224_stock_projection.png
+│   │   │   │   ├── 5248IM0108226_details.csv
+│   │   │   │   ├── 5248IM0108226_stock_projection.png
+│   │   │   │   ├── 5248IM0108236_details.csv
+│   │   │   │   ├── 5248IM0108236_stock_projection.png
+│   │   │   │   ├── 5248IM0108237_details.csv
+│   │   │   │   ├── 5248IM0108237_stock_projection.png
+│   │   │   │   ├── 5248IM0108239_details.csv
+│   │   │   │   ├── 5248IM0108239_stock_projection.png
+│   │   │   │   ├── 5248IM0108242_details.csv
+│   │   │   │   ├── 5248IM0108242_stock_projection.png
+│   │   │   │   ├── 5248IM0108322_details.csv
+│   │   │   │   ├── 5248IM0108322_stock_projection.png
+│   │   │   │   ├── 5248IM0108402_details.csv
+│   │   │   │   ├── 5248IM0108402_stock_projection.png
+│   │   │   │   ├── 5248IM0108404_details.csv
+│   │   │   │   ├── 5248IM0108404_stock_projection.png
+│   │   │   │   ├── 5248IM0108488_details.csv
+│   │   │   │   ├── 5248IM0108488_stock_projection.png
+│   │   │   │   ├── 5248IM0108769_details.csv
+│   │   │   │   └── 5248IM0108769_stock_projection.png
+│   │   │   ├── Bruni
+│   │   │   │   ├── 1129ANB310769_details.csv
+│   │   │   │   ├── 1129ANB310769_stock_projection.png
+│   │   │   │   ├── 1129ANB310772_details.csv
+│   │   │   │   ├── 1129ANB310772_stock_projection.png
+│   │   │   │   ├── 1129ANB310831_details.csv
+│   │   │   │   ├── 1129ANB310831_stock_projection.png
+│   │   │   │   ├── 1129ANB310888_details.csv
+│   │   │   │   ├── 1129ANB310888_stock_projection.png
+│   │   │   │   ├── 1129ANB312903_details.csv
+│   │   │   │   ├── 1129ANB312903_stock_projection.png
+│   │   │   │   ├── 1129ANB313602_details.csv
+│   │   │   │   ├── 1129ANB313602_stock_projection.png
+│   │   │   │   ├── 1129ANB313916_details.csv
+│   │   │   │   ├── 1129ANB313916_stock_projection.png
+│   │   │   │   ├── 1129ANB314850_details.csv
+│   │   │   │   ├── 1129ANB314850_stock_projection.png
+│   │   │   │   ├── 1129ANB316890_details.csv
+│   │   │   │   ├── 1129ANB316890_stock_projection.png
+│   │   │   │   ├── 1129ANB317007_details.csv
+│   │   │   │   ├── 1129ANB317007_stock_projection.png
+│   │   │   │   ├── 1129ANB318003_details.csv
+│   │   │   │   ├── 1129ANB318003_stock_projection.png
+│   │   │   │   ├── 1129ANB318902_details.csv
+│   │   │   │   └── 1129ANB318902_stock_projection.png
+│   │   │   ├── Diana
+│   │   │   │   ├── 1340IMK010002_details.csv
+│   │   │   │   ├── 1340IMK010002_stock_projection.png
+│   │   │   │   ├── 1340IMK010003_details.csv
+│   │   │   │   ├── 1340IMK010003_stock_projection.png
+│   │   │   │   ├── 1340IMK010004_details.csv
+│   │   │   │   ├── 1340IMK010004_stock_projection.png
+│   │   │   │   ├── 1340IMK010005_details.csv
+│   │   │   │   ├── 1340IMK010005_stock_projection.png
+│   │   │   │   ├── 1340IMK010006_details.csv
+│   │   │   │   ├── 1340IMK010006_stock_projection.png
+│   │   │   │   ├── 1340IMK010007_details.csv
+│   │   │   │   ├── 1340IMK010007_stock_projection.png
+│   │   │   │   ├── 1340IMK010008_details.csv
+│   │   │   │   ├── 1340IMK010008_stock_projection.png
+│   │   │   │   ├── 1340IMK010009_details.csv
+│   │   │   │   ├── 1340IMK010009_stock_projection.png
+│   │   │   │   ├── 1340IMK010010_details.csv
+│   │   │   │   ├── 1340IMK010010_stock_projection.png
+│   │   │   │   ├── 1340IMK010011_details.csv
+│   │   │   │   ├── 1340IMK010011_stock_projection.png
+│   │   │   │   ├── 1340IMK010012_details.csv
+│   │   │   │   └── 1340IMK010012_stock_projection.png
+│   │   │   ├── Extra
+│   │   │   │   ├── 1155AN1010718_details.csv
+│   │   │   │   ├── 1155AN1010718_stock_projection.png
+│   │   │   │   ├── 1155AN1010735_details.csv
+│   │   │   │   ├── 1155AN1010735_stock_projection.png
+│   │   │   │   ├── 1155AN1010740_details.csv
+│   │   │   │   ├── 1155AN1010740_stock_projection.png
+│   │   │   │   ├── 1155AN1010769_details.csv
+│   │   │   │   ├── 1155AN1010769_stock_projection.png
+│   │   │   │   ├── 1155AN1010772_details.csv
+│   │   │   │   ├── 1155AN1010772_stock_projection.png
+│   │   │   │   ├── 1155AN1010807_details.csv
+│   │   │   │   ├── 1155AN1010807_stock_projection.png
+│   │   │   │   ├── 1155AN1010811_details.csv
+│   │   │   │   ├── 1155AN1010811_stock_projection.png
+│   │   │   │   ├── 1155AN1010829_details.csv
+│   │   │   │   ├── 1155AN1010829_stock_projection.png
+│   │   │   │   ├── 1155AN1010875_details.csv
+│   │   │   │   ├── 1155AN1010875_stock_projection.png
+│   │   │   │   ├── 1155AN1010880_details.csv
+│   │   │   │   ├── 1155AN1010880_stock_projection.png
+│   │   │   │   ├── 1155AN1010888_details.csv
+│   │   │   │   ├── 1155AN1010888_stock_projection.png
+│   │   │   │   ├── 1155AN1011102_details.csv
+│   │   │   │   ├── 1155AN1011102_stock_projection.png
+│   │   │   │   ├── 1155AN1011302_details.csv
+│   │   │   │   ├── 1155AN1011302_stock_projection.png
+│   │   │   │   ├── 1155AN1012903_details.csv
+│   │   │   │   ├── 1155AN1012903_stock_projection.png
+│   │   │   │   ├── 1155AN1013202_details.csv
+│   │   │   │   ├── 1155AN1013202_stock_projection.png
+│   │   │   │   ├── 1155AN1013602_details.csv
+│   │   │   │   ├── 1155AN1013602_stock_projection.png
+│   │   │   │   ├── 1155AN1014850_details.csv
+│   │   │   │   ├── 1155AN1014850_stock_projection.png
+│   │   │   │   ├── 1155AN1015502_details.csv
+│   │   │   │   ├── 1155AN1015502_stock_projection.png
+│   │   │   │   ├── 1155AN1016702_details.csv
+│   │   │   │   ├── 1155AN1016702_stock_projection.png
+│   │   │   │   ├── 1155AN1016890_details.csv
+│   │   │   │   ├── 1155AN1016890_stock_projection.png
+│   │   │   │   ├── 1155AN1016902_details.csv
+│   │   │   │   ├── 1155AN1016902_stock_projection.png
+│   │   │   │   ├── 1155AN1018003_details.csv
+│   │   │   │   ├── 1155AN1018003_stock_projection.png
+│   │   │   │   ├── 1155AN1018902_details.csv
+│   │   │   │   └── 1155AN1018902_stock_projection.png
+│   │   │   ├── Glaciar
+│   │   │   │   ├── 5521IM1010530_details.csv
+│   │   │   │   ├── 5521IM1010530_stock_projection.png
+│   │   │   │   ├── 5521IM1010572_details.csv
+│   │   │   │   ├── 5521IM1010572_stock_projection.png
+│   │   │   │   ├── 5521IM1010718_details.csv
+│   │   │   │   ├── 5521IM1010718_stock_projection.png
+│   │   │   │   ├── 5521IM1010740_details.csv
+│   │   │   │   ├── 5521IM1010740_stock_projection.png
+│   │   │   │   ├── 5521IM1010831_details.csv
+│   │   │   │   ├── 5521IM1010831_stock_projection.png
+│   │   │   │   ├── 5521IM1010862_details.csv
+│   │   │   │   ├── 5521IM1010862_stock_projection.png
+│   │   │   │   ├── 5521IM1010875_details.csv
+│   │   │   │   ├── 5521IM1010875_stock_projection.png
+│   │   │   │   ├── 5521IM1010888_details.csv
+│   │   │   │   ├── 5521IM1010888_stock_projection.png
+│   │   │   │   ├── 5521IM1010910_details.csv
+│   │   │   │   ├── 5521IM1010910_stock_projection.png
+│   │   │   │   ├── 5521IM1010935_details.csv
+│   │   │   │   ├── 5521IM1010935_stock_projection.png
+│   │   │   │   ├── 5521IM1011302_details.csv
+│   │   │   │   ├── 5521IM1011302_stock_projection.png
+│   │   │   │   ├── 5521IM1012903_details.csv
+│   │   │   │   ├── 5521IM1012903_stock_projection.png
+│   │   │   │   ├── 5521IM1013602_details.csv
+│   │   │   │   ├── 5521IM1013602_stock_projection.png
+│   │   │   │   ├── 5521IM1015204_details.csv
+│   │   │   │   ├── 5521IM1015204_stock_projection.png
+│   │   │   │   ├── 5521IM1015502_details.csv
+│   │   │   │   ├── 5521IM1015502_stock_projection.png
+│   │   │   │   ├── 5521IM1017007_details.csv
+│   │   │   │   ├── 5521IM1017007_stock_projection.png
+│   │   │   │   ├── 5521IM1018902_details.csv
+│   │   │   │   ├── 5521IM1018902_stock_projection.png
+│   │   │   │   ├── 5521IM1019102_details.csv
+│   │   │   │   └── 5521IM1019102_stock_projection.png
+│   │   │   ├── Glaciar Estampado Ac
+│   │   │   │   ├── 5524IM1010138_details.csv
+│   │   │   │   ├── 5524IM1010138_stock_projection.png
+│   │   │   │   ├── 5524IM1010148_details.csv
+│   │   │   │   ├── 5524IM1010148_stock_projection.png
+│   │   │   │   ├── 5524IM1010158_details.csv
+│   │   │   │   ├── 5524IM1010158_stock_projection.png
+│   │   │   │   ├── 5524IM1010168_details.csv
+│   │   │   │   ├── 5524IM1010168_stock_projection.png
+│   │   │   │   ├── 5524IM1010178_details.csv
+│   │   │   │   ├── 5524IM1010178_stock_projection.png
+│   │   │   │   ├── 5524IM1010188_details.csv
+│   │   │   │   ├── 5524IM1010188_stock_projection.png
+│   │   │   │   ├── 5524IM1010198_details.csv
+│   │   │   │   └── 5524IM1010198_stock_projection.png
+│   │   │   ├── Happy Soft
+│   │   │   │   ├── 5538IM0F10001_details.csv
+│   │   │   │   ├── 5538IM0F10001_stock_projection.png
+│   │   │   │   ├── 5538IM0F10002_details.csv
+│   │   │   │   ├── 5538IM0F10002_stock_projection.png
+│   │   │   │   ├── 5538IM0F10003_details.csv
+│   │   │   │   ├── 5538IM0F10003_stock_projection.png
+│   │   │   │   ├── 5538IM0F10004_details.csv
+│   │   │   │   ├── 5538IM0F10004_stock_projection.png
+│   │   │   │   ├── 5538IM0F10005_details.csv
+│   │   │   │   ├── 5538IM0F10005_stock_projection.png
+│   │   │   │   ├── 5538IM0F10006_details.csv
+│   │   │   │   ├── 5538IM0F10006_stock_projection.png
+│   │   │   │   ├── 5538IM0F10007_details.csv
+│   │   │   │   ├── 5538IM0F10007_stock_projection.png
+│   │   │   │   ├── 5538IM0F10008_details.csv
+│   │   │   │   ├── 5538IM0F10008_stock_projection.png
+│   │   │   │   ├── 5538IM0F10009_details.csv
+│   │   │   │   ├── 5538IM0F10009_stock_projection.png
+│   │   │   │   ├── 5538IM0F10010_details.csv
+│   │   │   │   ├── 5538IM0F10010_stock_projection.png
+│   │   │   │   ├── 5538IM0F10011_details.csv
+│   │   │   │   ├── 5538IM0F10011_stock_projection.png
+│   │   │   │   ├── 5538IM0F10012_details.csv
+│   │   │   │   ├── 5538IM0F10012_stock_projection.png
+│   │   │   │   ├── 5538IM0F10013_details.csv
+│   │   │   │   ├── 5538IM0F10013_stock_projection.png
+│   │   │   │   ├── 5538IM0F10014_details.csv
+│   │   │   │   ├── 5538IM0F10014_stock_projection.png
+│   │   │   │   ├── 5538IM0F10015_details.csv
+│   │   │   │   ├── 5538IM0F10015_stock_projection.png
+│   │   │   │   ├── 5538IM0F10016_details.csv
+│   │   │   │   ├── 5538IM0F10016_stock_projection.png
+│   │   │   │   ├── 5538IM0F10017_details.csv
+│   │   │   │   ├── 5538IM0F10017_stock_projection.png
+│   │   │   │   ├── 5538IM0F10018_details.csv
+│   │   │   │   └── 5538IM0F10018_stock_projection.png
+│   │   │   ├── Happy Soft Estampado
+│   │   │   │   ├── 5539IM0F10040_details.csv
+│   │   │   │   ├── 5539IM0F10040_stock_projection.png
+│   │   │   │   ├── 5539IM0F10041_details.csv
+│   │   │   │   ├── 5539IM0F10041_stock_projection.png
+│   │   │   │   ├── 5539IM0F10042_details.csv
+│   │   │   │   ├── 5539IM0F10042_stock_projection.png
+│   │   │   │   ├── 5539IM0F10043_details.csv
+│   │   │   │   ├── 5539IM0F10043_stock_projection.png
+│   │   │   │   ├── 5539IM0F10044_details.csv
+│   │   │   │   ├── 5539IM0F10044_stock_projection.png
+│   │   │   │   ├── 5539IM0F10045_details.csv
+│   │   │   │   ├── 5539IM0F10045_stock_projection.png
+│   │   │   │   ├── 5539IM0F10046_details.csv
+│   │   │   │   ├── 5539IM0F10046_stock_projection.png
+│   │   │   │   ├── 5539IM0F10047_details.csv
+│   │   │   │   ├── 5539IM0F10047_stock_projection.png
+│   │   │   │   ├── 5539IM0F10048_details.csv
+│   │   │   │   ├── 5539IM0F10048_stock_projection.png
+│   │   │   │   ├── 5539IM0F10049_details.csv
+│   │   │   │   └── 5539IM0F10049_stock_projection.png
+│   │   │   ├── Krehuel
+│   │   │   │   ├── 1123AN1050001_details.csv
+│   │   │   │   ├── 1123AN1050001_stock_projection.png
+│   │   │   │   ├── 1123AN1050006_details.csv
+│   │   │   │   ├── 1123AN1050006_stock_projection.png
+│   │   │   │   ├── 1123AN1050011_details.csv
+│   │   │   │   ├── 1123AN1050011_stock_projection.png
+│   │   │   │   ├── 1123AN1050012_details.csv
+│   │   │   │   ├── 1123AN1050012_stock_projection.png
+│   │   │   │   ├── 1123AN1050013_details.csv
+│   │   │   │   ├── 1123AN1050013_stock_projection.png
+│   │   │   │   ├── 1123AN1050015_details.csv
+│   │   │   │   ├── 1123AN1050015_stock_projection.png
+│   │   │   │   ├── 1123AN1050017_details.csv
+│   │   │   │   ├── 1123AN1050017_stock_projection.png
+│   │   │   │   ├── 1123AN1050018_details.csv
+│   │   │   │   ├── 1123AN1050018_stock_projection.png
+│   │   │   │   ├── 1123AN1050020_details.csv
+│   │   │   │   ├── 1123AN1050020_stock_projection.png
+│   │   │   │   ├── 1123AN1050022_details.csv
+│   │   │   │   ├── 1123AN1050022_stock_projection.png
+│   │   │   │   ├── 1123AN1050023_details.csv
+│   │   │   │   ├── 1123AN1050023_stock_projection.png
+│   │   │   │   ├── 1123AN1050024_details.csv
+│   │   │   │   ├── 1123AN1050024_stock_projection.png
+│   │   │   │   ├── 1123AN1050025_details.csv
+│   │   │   │   ├── 1123AN1050025_stock_projection.png
+│   │   │   │   ├── 1123AN1050026_details.csv
+│   │   │   │   ├── 1123AN1050026_stock_projection.png
+│   │   │   │   ├── 1123AN1050027_details.csv
+│   │   │   │   ├── 1123AN1050027_stock_projection.png
+│   │   │   │   ├── 1123AN1050028_details.csv
+│   │   │   │   ├── 1123AN1050028_stock_projection.png
+│   │   │   │   ├── 1123AN1050030_details.csv
+│   │   │   │   ├── 1123AN1050030_stock_projection.png
+│   │   │   │   ├── 1123AN1050036_details.csv
+│   │   │   │   ├── 1123AN1050036_stock_projection.png
+│   │   │   │   ├── 1123AN1050037_details.csv
+│   │   │   │   ├── 1123AN1050037_stock_projection.png
+│   │   │   │   ├── 1123AN1050041_details.csv
+│   │   │   │   ├── 1123AN1050041_stock_projection.png
+│   │   │   │   ├── 1123AN1050134_details.csv
+│   │   │   │   ├── 1123AN1050134_stock_projection.png
+│   │   │   │   ├── 1123AN1050718_details.csv
+│   │   │   │   ├── 1123AN1050718_stock_projection.png
+│   │   │   │   ├── 1123AN1050829_details.csv
+│   │   │   │   ├── 1123AN1050829_stock_projection.png
+│   │   │   │   ├── 1123AN1050831_details.csv
+│   │   │   │   ├── 1123AN1050831_stock_projection.png
+│   │   │   │   ├── 1123AN1050888_details.csv
+│   │   │   │   ├── 1123AN1050888_stock_projection.png
+│   │   │   │   ├── 1123AN1051777_details.csv
+│   │   │   │   ├── 1123AN1051777_stock_projection.png
+│   │   │   │   ├── 1123AN1051788_details.csv
+│   │   │   │   ├── 1123AN1051788_stock_projection.png
+│   │   │   │   ├── 1123AN1051799_details.csv
+│   │   │   │   ├── 1123AN1051799_stock_projection.png
+│   │   │   │   ├── 1123AN1053602_details.csv
+│   │   │   │   ├── 1123AN1053602_stock_projection.png
+│   │   │   │   ├── 1123AN1053902_details.csv
+│   │   │   │   ├── 1123AN1053902_stock_projection.png
+│   │   │   │   ├── 1123AN1055032_details.csv
+│   │   │   │   ├── 1123AN1055032_stock_projection.png
+│   │   │   │   ├── 1123AN1055502_details.csv
+│   │   │   │   ├── 1123AN1055502_stock_projection.png
+│   │   │   │   ├── 1123AN1056902_details.csv
+│   │   │   │   ├── 1123AN1056902_stock_projection.png
+│   │   │   │   ├── 1123AN1058003_details.csv
+│   │   │   │   └── 1123AN1058003_stock_projection.png
+│   │   │   ├── Krehuel Estampado
+│   │   │   │   ├── 1119AN1050472_details.csv
+│   │   │   │   ├── 1119AN1050472_stock_projection.png
+│   │   │   │   ├── 1119AN1050475_details.csv
+│   │   │   │   ├── 1119AN1050475_stock_projection.png
+│   │   │   │   ├── 1119AN1050477_details.csv
+│   │   │   │   ├── 1119AN1050477_stock_projection.png
+│   │   │   │   ├── 1119AN1050478_details.csv
+│   │   │   │   ├── 1119AN1050478_stock_projection.png
+│   │   │   │   ├── 1119AN1050481_details.csv
+│   │   │   │   ├── 1119AN1050481_stock_projection.png
+│   │   │   │   ├── 1119AN1050482_details.csv
+│   │   │   │   ├── 1119AN1050482_stock_projection.png
+│   │   │   │   ├── 1119AN1050487_details.csv
+│   │   │   │   ├── 1119AN1050487_stock_projection.png
+│   │   │   │   ├── 1119AN1050488_details.csv
+│   │   │   │   ├── 1119AN1050488_stock_projection.png
+│   │   │   │   ├── 1119AN1050489_details.csv
+│   │   │   │   └── 1119AN1050489_stock_projection.png
+│   │   │   ├── Mandala
+│   │   │   │   ├── 5526IMK010101_details.csv
+│   │   │   │   ├── 5526IMK010101_stock_projection.png
+│   │   │   │   ├── 5526IMK010119_details.csv
+│   │   │   │   ├── 5526IMK010119_stock_projection.png
+│   │   │   │   ├── 5526IMK010503_details.csv
+│   │   │   │   ├── 5526IMK010503_stock_projection.png
+│   │   │   │   ├── 5526IMK010504_details.csv
+│   │   │   │   ├── 5526IMK010504_stock_projection.png
+│   │   │   │   ├── 5526IMK010507_details.csv
+│   │   │   │   ├── 5526IMK010507_stock_projection.png
+│   │   │   │   ├── 5526IMK013002_details.csv
+│   │   │   │   ├── 5526IMK013002_stock_projection.png
+│   │   │   │   ├── 5526IMK013051_details.csv
+│   │   │   │   ├── 5526IMK013051_stock_projection.png
+│   │   │   │   ├── 5526IMK013307_details.csv
+│   │   │   │   ├── 5526IMK013307_stock_projection.png
+│   │   │   │   ├── 5526IMK013401_details.csv
+│   │   │   │   ├── 5526IMK013401_stock_projection.png
+│   │   │   │   ├── 5526IMK013502_details.csv
+│   │   │   │   ├── 5526IMK013502_stock_projection.png
+│   │   │   │   ├── 5526IMK013505_details.csv
+│   │   │   │   ├── 5526IMK013505_stock_projection.png
+│   │   │   │   ├── 5526IMK013506_details.csv
+│   │   │   │   ├── 5526IMK013506_stock_projection.png
+│   │   │   │   ├── 5526IMK013601_details.csv
+│   │   │   │   ├── 5526IMK013601_stock_projection.png
+│   │   │   │   ├── 5526IMK013603_details.csv
+│   │   │   │   ├── 5526IMK013603_stock_projection.png
+│   │   │   │   ├── 5526IMK013703_details.csv
+│   │   │   │   ├── 5526IMK013703_stock_projection.png
+│   │   │   │   ├── 5526IMK013709_details.csv
+│   │   │   │   ├── 5526IMK013709_stock_projection.png
+│   │   │   │   ├── 5526IMK017804_details.csv
+│   │   │   │   ├── 5526IMK017804_stock_projection.png
+│   │   │   │   ├── 5526IMK017829_details.csv
+│   │   │   │   ├── 5526IMK017829_stock_projection.png
+│   │   │   │   ├── 5526IMK017832_details.csv
+│   │   │   │   ├── 5526IMK017832_stock_projection.png
+│   │   │   │   ├── 5526IMK017864_details.csv
+│   │   │   │   ├── 5526IMK017864_stock_projection.png
+│   │   │   │   ├── 5526IMK017865_details.csv
+│   │   │   │   └── 5526IMK017865_stock_projection.png
+│   │   │   ├── Mosaico
+│   │   │   │   ├── 5617IM8X10001_details.csv
+│   │   │   │   ├── 5617IM8X10001_stock_projection.png
+│   │   │   │   ├── 5617IM8X10002_details.csv
+│   │   │   │   ├── 5617IM8X10002_stock_projection.png
+│   │   │   │   ├── 5617IM8X10003_details.csv
+│   │   │   │   ├── 5617IM8X10003_stock_projection.png
+│   │   │   │   ├── 5617IM8X10004_details.csv
+│   │   │   │   ├── 5617IM8X10004_stock_projection.png
+│   │   │   │   ├── 5617IM8X10006_details.csv
+│   │   │   │   ├── 5617IM8X10006_stock_projection.png
+│   │   │   │   ├── 5617IM8X10007_details.csv
+│   │   │   │   ├── 5617IM8X10007_stock_projection.png
+│   │   │   │   ├── 5617IM8X10008_details.csv
+│   │   │   │   ├── 5617IM8X10008_stock_projection.png
+│   │   │   │   ├── 5617IM8X10009_details.csv
+│   │   │   │   ├── 5617IM8X10009_stock_projection.png
+│   │   │   │   ├── 5617IM8X10010_details.csv
+│   │   │   │   ├── 5617IM8X10010_stock_projection.png
+│   │   │   │   ├── 5617IM8X10011_details.csv
+│   │   │   │   └── 5617IM8X10011_stock_projection.png
+│   │   │   ├── Nako Melange
+│   │   │   │   ├── 5614IM0D10091_details.csv
+│   │   │   │   ├── 5614IM0D10091_stock_projection.png
+│   │   │   │   ├── 5614IM0D10092_details.csv
+│   │   │   │   ├── 5614IM0D10092_stock_projection.png
+│   │   │   │   ├── 5614IM0D10093_details.csv
+│   │   │   │   ├── 5614IM0D10093_stock_projection.png
+│   │   │   │   ├── 5614IM0D10094_details.csv
+│   │   │   │   ├── 5614IM0D10094_stock_projection.png
+│   │   │   │   ├── 5614IM0D10095_details.csv
+│   │   │   │   ├── 5614IM0D10095_stock_projection.png
+│   │   │   │   ├── 5614IM0D10096_details.csv
+│   │   │   │   ├── 5614IM0D10096_stock_projection.png
+│   │   │   │   ├── 5614IM0D10097_details.csv
+│   │   │   │   ├── 5614IM0D10097_stock_projection.png
+│   │   │   │   ├── 5614IM0D10098_details.csv
+│   │   │   │   ├── 5614IM0D10098_stock_projection.png
+│   │   │   │   ├── 5614IM0D10099_details.csv
+│   │   │   │   └── 5614IM0D10099_stock_projection.png
+│   │   │   ├── Sport Ukryl
+│   │   │   │   ├── 5256IM0K10210_details.csv
+│   │   │   │   ├── 5256IM0K10210_stock_projection.png
+│   │   │   │   ├── 5256IM0K10290_details.csv
+│   │   │   │   ├── 5256IM0K10290_stock_projection.png
+│   │   │   │   ├── 5256IM0K10386_details.csv
+│   │   │   │   ├── 5256IM0K10386_stock_projection.png
+│   │   │   │   ├── 5256IM0K10432_details.csv
+│   │   │   │   ├── 5256IM0K10432_stock_projection.png
+│   │   │   │   ├── 5256IM0K10465_details.csv
+│   │   │   │   ├── 5256IM0K10465_stock_projection.png
+│   │   │   │   ├── 5256IM0K10575_details.csv
+│   │   │   │   ├── 5256IM0K10575_stock_projection.png
+│   │   │   │   ├── 5256IM0K10586_details.csv
+│   │   │   │   ├── 5256IM0K10586_stock_projection.png
+│   │   │   │   ├── 5256IM0K10590_details.csv
+│   │   │   │   ├── 5256IM0K10590_stock_projection.png
+│   │   │   │   ├── 5256IM0K10617_details.csv
+│   │   │   │   ├── 5256IM0K10617_stock_projection.png
+│   │   │   │   ├── 5256IM0K10664_details.csv
+│   │   │   │   ├── 5256IM0K10664_stock_projection.png
+│   │   │   │   ├── 5256IM0K10685_details.csv
+│   │   │   │   ├── 5256IM0K10685_stock_projection.png
+│   │   │   │   ├── 5256IM0K10690_details.csv
+│   │   │   │   ├── 5256IM0K10690_stock_projection.png
+│   │   │   │   ├── 5256IM0K10752_details.csv
+│   │   │   │   ├── 5256IM0K10752_stock_projection.png
+│   │   │   │   ├── 5256IM0K10795_details.csv
+│   │   │   │   ├── 5256IM0K10795_stock_projection.png
+│   │   │   │   ├── 5256IM0K10800_details.csv
+│   │   │   │   ├── 5256IM0K10800_stock_projection.png
+│   │   │   │   ├── 5256IM0K10843_details.csv
+│   │   │   │   ├── 5256IM0K10843_stock_projection.png
+│   │   │   │   ├── 5256IM0K11302_details.csv
+│   │   │   │   ├── 5256IM0K11302_stock_projection.png
+│   │   │   │   ├── 5256IM0K12903_details.csv
+│   │   │   │   ├── 5256IM0K12903_stock_projection.png
+│   │   │   │   ├── 5256IM0K13916_details.csv
+│   │   │   │   └── 5256IM0K13916_stock_projection.png
+│   │   │   ├── Super Economico 100 gr
+│   │   │   │   ├── 1150AN0T10033_details.csv
+│   │   │   │   ├── 1150AN0T10033_stock_projection.png
+│   │   │   │   ├── 1150AN0T10041_details.csv
+│   │   │   │   ├── 1150AN0T10041_stock_projection.png
+│   │   │   │   ├── 1150AN0T10425_details.csv
+│   │   │   │   ├── 1150AN0T10425_stock_projection.png
+│   │   │   │   ├── 1150AN0T10712_details.csv
+│   │   │   │   ├── 1150AN0T10712_stock_projection.png
+│   │   │   │   ├── 1150AN0T10718_details.csv
+│   │   │   │   ├── 1150AN0T10718_stock_projection.png
+│   │   │   │   ├── 1150AN0T10735_details.csv
+│   │   │   │   ├── 1150AN0T10735_stock_projection.png
+│   │   │   │   ├── 1150AN0T10740_details.csv
+│   │   │   │   ├── 1150AN0T10740_stock_projection.png
+│   │   │   │   ├── 1150AN0T10769_details.csv
+│   │   │   │   ├── 1150AN0T10769_stock_projection.png
+│   │   │   │   ├── 1150AN0T10772_details.csv
+│   │   │   │   ├── 1150AN0T10772_stock_projection.png
+│   │   │   │   ├── 1150AN0T10807_details.csv
+│   │   │   │   ├── 1150AN0T10807_stock_projection.png
+│   │   │   │   ├── 1150AN0T10811_details.csv
+│   │   │   │   ├── 1150AN0T10811_stock_projection.png
+│   │   │   │   ├── 1150AN0T10829_details.csv
+│   │   │   │   ├── 1150AN0T10829_stock_projection.png
+│   │   │   │   ├── 1150AN0T10875_details.csv
+│   │   │   │   ├── 1150AN0T10875_stock_projection.png
+│   │   │   │   ├── 1150AN0T11102_details.csv
+│   │   │   │   ├── 1150AN0T11102_stock_projection.png
+│   │   │   │   ├── 1150AN0T11302_details.csv
+│   │   │   │   ├── 1150AN0T11302_stock_projection.png
+│   │   │   │   ├── 1150AN0T12903_details.csv
+│   │   │   │   ├── 1150AN0T12903_stock_projection.png
+│   │   │   │   ├── 1150AN0T13202_details.csv
+│   │   │   │   ├── 1150AN0T13202_stock_projection.png
+│   │   │   │   ├── 1150AN0T13602_details.csv
+│   │   │   │   ├── 1150AN0T13602_stock_projection.png
+│   │   │   │   ├── 1150AN0T13916_details.csv
+│   │   │   │   ├── 1150AN0T13916_stock_projection.png
+│   │   │   │   ├── 1150AN0T14850_details.csv
+│   │   │   │   ├── 1150AN0T14850_stock_projection.png
+│   │   │   │   ├── 1150AN0T15032_details.csv
+│   │   │   │   ├── 1150AN0T15032_stock_projection.png
+│   │   │   │   ├── 1150AN0T16702_details.csv
+│   │   │   │   ├── 1150AN0T16702_stock_projection.png
+│   │   │   │   ├── 1150AN0T16902_details.csv
+│   │   │   │   ├── 1150AN0T16902_stock_projection.png
+│   │   │   │   ├── 1150AN0T17007_details.csv
+│   │   │   │   ├── 1150AN0T17007_stock_projection.png
+│   │   │   │   ├── 1150AN0T18003_details.csv
+│   │   │   │   ├── 1150AN0T18003_stock_projection.png
+│   │   │   │   ├── 1150AN0T18902_details.csv
+│   │   │   │   └── 1150AN0T18902_stock_projection.png
+│   │   │   ├── Super Económico 50g
+│   │   │   │   ├── 1153AN0T50033_details.csv
+│   │   │   │   ├── 1153AN0T50033_stock_projection.png
+│   │   │   │   ├── 1153AN0T50041_details.csv
+│   │   │   │   ├── 1153AN0T50041_stock_projection.png
+│   │   │   │   ├── 1153AN0T50425_details.csv
+│   │   │   │   ├── 1153AN0T50425_stock_projection.png
+│   │   │   │   ├── 1153AN0T50712_details.csv
+│   │   │   │   ├── 1153AN0T50712_stock_projection.png
+│   │   │   │   ├── 1153AN0T50718_details.csv
+│   │   │   │   ├── 1153AN0T50718_stock_projection.png
+│   │   │   │   ├── 1153AN0T50735_details.csv
+│   │   │   │   ├── 1153AN0T50735_stock_projection.png
+│   │   │   │   ├── 1153AN0T50740_details.csv
+│   │   │   │   ├── 1153AN0T50740_stock_projection.png
+│   │   │   │   ├── 1153AN0T50769_details.csv
+│   │   │   │   ├── 1153AN0T50769_stock_projection.png
+│   │   │   │   ├── 1153AN0T50772_details.csv
+│   │   │   │   ├── 1153AN0T50772_stock_projection.png
+│   │   │   │   ├── 1153AN0T50807_details.csv
+│   │   │   │   ├── 1153AN0T50807_stock_projection.png
+│   │   │   │   ├── 1153AN0T50811_details.csv
+│   │   │   │   ├── 1153AN0T50811_stock_projection.png
+│   │   │   │   ├── 1153AN0T50829_details.csv
+│   │   │   │   ├── 1153AN0T50829_stock_projection.png
+│   │   │   │   ├── 1153AN0T50875_details.csv
+│   │   │   │   ├── 1153AN0T50875_stock_projection.png
+│   │   │   │   ├── 1153AN0T51102_details.csv
+│   │   │   │   ├── 1153AN0T51102_stock_projection.png
+│   │   │   │   ├── 1153AN0T51302_details.csv
+│   │   │   │   ├── 1153AN0T51302_stock_projection.png
+│   │   │   │   ├── 1153AN0T52903_details.csv
+│   │   │   │   ├── 1153AN0T52903_stock_projection.png
+│   │   │   │   ├── 1153AN0T53202_details.csv
+│   │   │   │   ├── 1153AN0T53202_stock_projection.png
+│   │   │   │   ├── 1153AN0T53602_details.csv
+│   │   │   │   ├── 1153AN0T53602_stock_projection.png
+│   │   │   │   ├── 1153AN0T53916_details.csv
+│   │   │   │   ├── 1153AN0T53916_stock_projection.png
+│   │   │   │   ├── 1153AN0T54850_details.csv
+│   │   │   │   ├── 1153AN0T54850_stock_projection.png
+│   │   │   │   ├── 1153AN0T55032_details.csv
+│   │   │   │   ├── 1153AN0T55032_stock_projection.png
+│   │   │   │   ├── 1153AN0T56702_details.csv
+│   │   │   │   ├── 1153AN0T56702_stock_projection.png
+│   │   │   │   ├── 1153AN0T56902_details.csv
+│   │   │   │   ├── 1153AN0T56902_stock_projection.png
+│   │   │   │   ├── 1153AN0T57007_details.csv
+│   │   │   │   ├── 1153AN0T57007_stock_projection.png
+│   │   │   │   ├── 1153AN0T58003_details.csv
+│   │   │   │   ├── 1153AN0T58003_stock_projection.png
+│   │   │   │   ├── 1153AN0T58902_details.csv
+│   │   │   │   └── 1153AN0T58902_stock_projection.png
+│   │   │   ├── Terra
+│   │   │   │   ├── 5541IM0D10001_details.csv
+│   │   │   │   ├── 5541IM0D10001_stock_projection.png
+│   │   │   │   ├── 5541IM0D10002_details.csv
+│   │   │   │   ├── 5541IM0D10002_stock_projection.png
+│   │   │   │   ├── 5541IM0D10003_details.csv
+│   │   │   │   ├── 5541IM0D10003_stock_projection.png
+│   │   │   │   ├── 5541IM0D10004_details.csv
+│   │   │   │   ├── 5541IM0D10004_stock_projection.png
+│   │   │   │   ├── 5541IM0D10005_details.csv
+│   │   │   │   ├── 5541IM0D10005_stock_projection.png
+│   │   │   │   ├── 5541IM0D10006_details.csv
+│   │   │   │   └── 5541IM0D10006_stock_projection.png
+│   │   │   ├── Tiramisu
+│   │   │   │   ├── 5540IM0D10001_details.csv
+│   │   │   │   ├── 5540IM0D10001_stock_projection.png
+│   │   │   │   ├── 5540IM0D10002_details.csv
+│   │   │   │   ├── 5540IM0D10002_stock_projection.png
+│   │   │   │   ├── 5540IM0D10003_details.csv
+│   │   │   │   ├── 5540IM0D10003_stock_projection.png
+│   │   │   │   ├── 5540IM0D10004_details.csv
+│   │   │   │   ├── 5540IM0D10004_stock_projection.png
+│   │   │   │   ├── 5540IM0D10005_details.csv
+│   │   │   │   ├── 5540IM0D10005_stock_projection.png
+│   │   │   │   ├── 5540IM0D10006_details.csv
+│   │   │   │   ├── 5540IM0D10006_stock_projection.png
+│   │   │   │   ├── 5540IM0D10007_details.csv
+│   │   │   │   ├── 5540IM0D10007_stock_projection.png
+│   │   │   │   ├── 5540IM0D10008_details.csv
+│   │   │   │   ├── 5540IM0D10008_stock_projection.png
+│   │   │   │   ├── 5540IM0D10009_details.csv
+│   │   │   │   ├── 5540IM0D10009_stock_projection.png
+│   │   │   │   ├── 5540IM0D10010_details.csv
+│   │   │   │   └── 5540IM0D10010_stock_projection.png
+│   │   │   ├── Ukryl Estampado
+│   │   │   │   ├── 1106AN1010004_details.csv
+│   │   │   │   ├── 1106AN1010004_stock_projection.png
+│   │   │   │   ├── 1106AN1010007_details.csv
+│   │   │   │   ├── 1106AN1010007_stock_projection.png
+│   │   │   │   ├── 1106AN1010016_details.csv
+│   │   │   │   ├── 1106AN1010016_stock_projection.png
+│   │   │   │   ├── 1106AN1010021_details.csv
+│   │   │   │   ├── 1106AN1010021_stock_projection.png
+│   │   │   │   ├── 1106AN1010024_details.csv
+│   │   │   │   ├── 1106AN1010024_stock_projection.png
+│   │   │   │   ├── 1106AN1010027_details.csv
+│   │   │   │   ├── 1106AN1010027_stock_projection.png
+│   │   │   │   ├── 1106AN1010029_details.csv
+│   │   │   │   ├── 1106AN1010029_stock_projection.png
+│   │   │   │   ├── 1106AN1010031_details.csv
+│   │   │   │   ├── 1106AN1010031_stock_projection.png
+│   │   │   │   ├── 1106AN1010041_details.csv
+│   │   │   │   ├── 1106AN1010041_stock_projection.png
+│   │   │   │   ├── 1106AN1010062_details.csv
+│   │   │   │   ├── 1106AN1010062_stock_projection.png
+│   │   │   │   ├── 1106AN1010064_details.csv
+│   │   │   │   ├── 1106AN1010064_stock_projection.png
+│   │   │   │   ├── 1106AN1010065_details.csv
+│   │   │   │   ├── 1106AN1010065_stock_projection.png
+│   │   │   │   ├── 1106AN1010077_details.csv
+│   │   │   │   ├── 1106AN1010077_stock_projection.png
+│   │   │   │   ├── 1106AN1010082_details.csv
+│   │   │   │   ├── 1106AN1010082_stock_projection.png
+│   │   │   │   ├── 1106AN1010085_details.csv
+│   │   │   │   ├── 1106AN1010085_stock_projection.png
+│   │   │   │   ├── 1106AN1010103_details.csv
+│   │   │   │   ├── 1106AN1010103_stock_projection.png
+│   │   │   │   ├── 1106AN1010118_details.csv
+│   │   │   │   ├── 1106AN1010118_stock_projection.png
+│   │   │   │   ├── 1106AN1010125_details.csv
+│   │   │   │   └── 1106AN1010125_stock_projection.png
+│   │   │   ├── Ukryl Etiqueta Dorada
+│   │   │   │   ├── 1100AN1010003_details.csv
+│   │   │   │   ├── 1100AN1010003_stock_projection.png
+│   │   │   │   ├── 1100AN1010022_details.csv
+│   │   │   │   ├── 1100AN1010022_stock_projection.png
+│   │   │   │   ├── 1100AN1010033_details.csv
+│   │   │   │   ├── 1100AN1010033_stock_projection.png
+│   │   │   │   ├── 1100AN1010134_details.csv
+│   │   │   │   ├── 1100AN1010134_stock_projection.png
+│   │   │   │   ├── 1100AN1010219_details.csv
+│   │   │   │   ├── 1100AN1010219_stock_projection.png
+│   │   │   │   ├── 1100AN1010425_details.csv
+│   │   │   │   ├── 1100AN1010425_stock_projection.png
+│   │   │   │   ├── 1100AN1010712_details.csv
+│   │   │   │   ├── 1100AN1010712_stock_projection.png
+│   │   │   │   ├── 1100AN1010718_details.csv
+│   │   │   │   ├── 1100AN1010718_stock_projection.png
+│   │   │   │   ├── 1100AN1010728_details.csv
+│   │   │   │   ├── 1100AN1010728_stock_projection.png
+│   │   │   │   ├── 1100AN1010732_details.csv
+│   │   │   │   ├── 1100AN1010732_stock_projection.png
+│   │   │   │   ├── 1100AN1010735_details.csv
+│   │   │   │   ├── 1100AN1010735_stock_projection.png
+│   │   │   │   ├── 1100AN1010740_details.csv
+│   │   │   │   ├── 1100AN1010740_stock_projection.png
+│   │   │   │   ├── 1100AN1010769_details.csv
+│   │   │   │   ├── 1100AN1010769_stock_projection.png
+│   │   │   │   ├── 1100AN1010772_details.csv
+│   │   │   │   ├── 1100AN1010772_stock_projection.png
+│   │   │   │   ├── 1100AN1010807_details.csv
+│   │   │   │   ├── 1100AN1010807_stock_projection.png
+│   │   │   │   ├── 1100AN1010811_details.csv
+│   │   │   │   ├── 1100AN1010811_stock_projection.png
+│   │   │   │   ├── 1100AN1010829_details.csv
+│   │   │   │   ├── 1100AN1010829_stock_projection.png
+│   │   │   │   ├── 1100AN1010831_details.csv
+│   │   │   │   ├── 1100AN1010831_stock_projection.png
+│   │   │   │   ├── 1100AN1010875_details.csv
+│   │   │   │   ├── 1100AN1010875_stock_projection.png
+│   │   │   │   ├── 1100AN1010880_details.csv
+│   │   │   │   ├── 1100AN1010880_stock_projection.png
+│   │   │   │   ├── 1100AN1010882_details.csv
+│   │   │   │   ├── 1100AN1010882_stock_projection.png
+│   │   │   │   ├── 1100AN1010888_details.csv
+│   │   │   │   ├── 1100AN1010888_stock_projection.png
+│   │   │   │   ├── 1100AN1010900_details.csv
+│   │   │   │   ├── 1100AN1010900_stock_projection.png
+│   │   │   │   ├── 1100AN1011102_details.csv
+│   │   │   │   ├── 1100AN1011102_stock_projection.png
+│   │   │   │   ├── 1100AN1011302_details.csv
+│   │   │   │   ├── 1100AN1011302_stock_projection.png
+│   │   │   │   ├── 1100AN1011777_details.csv
+│   │   │   │   ├── 1100AN1011777_stock_projection.png
+│   │   │   │   ├── 1100AN1011788_details.csv
+│   │   │   │   ├── 1100AN1011788_stock_projection.png
+│   │   │   │   ├── 1100AN1011799_details.csv
+│   │   │   │   ├── 1100AN1011799_stock_projection.png
+│   │   │   │   ├── 1100AN1012302_details.csv
+│   │   │   │   ├── 1100AN1012302_stock_projection.png
+│   │   │   │   ├── 1100AN1012903_details.csv
+│   │   │   │   ├── 1100AN1012903_stock_projection.png
+│   │   │   │   ├── 1100AN1013102_details.csv
+│   │   │   │   ├── 1100AN1013102_stock_projection.png
+│   │   │   │   ├── 1100AN1013202_details.csv
+│   │   │   │   ├── 1100AN1013202_stock_projection.png
+│   │   │   │   ├── 1100AN1013602_details.csv
+│   │   │   │   ├── 1100AN1013602_stock_projection.png
+│   │   │   │   ├── 1100AN1013902_details.csv
+│   │   │   │   ├── 1100AN1013902_stock_projection.png
+│   │   │   │   ├── 1100AN1013916_details.csv
+│   │   │   │   ├── 1100AN1013916_stock_projection.png
+│   │   │   │   ├── 1100AN1013917_details.csv
+│   │   │   │   ├── 1100AN1013917_stock_projection.png
+│   │   │   │   ├── 1100AN1014850_details.csv
+│   │   │   │   ├── 1100AN1014850_stock_projection.png
+│   │   │   │   ├── 1100AN1015029_details.csv
+│   │   │   │   ├── 1100AN1015029_stock_projection.png
+│   │   │   │   ├── 1100AN1015032_details.csv
+│   │   │   │   ├── 1100AN1015032_stock_projection.png
+│   │   │   │   ├── 1100AN1015033_details.csv
+│   │   │   │   ├── 1100AN1015033_stock_projection.png
+│   │   │   │   ├── 1100AN1015102_details.csv
+│   │   │   │   ├── 1100AN1015102_stock_projection.png
+│   │   │   │   ├── 1100AN1015204_details.csv
+│   │   │   │   ├── 1100AN1015204_stock_projection.png
+│   │   │   │   ├── 1100AN1015302_details.csv
+│   │   │   │   ├── 1100AN1015302_stock_projection.png
+│   │   │   │   ├── 1100AN1015502_details.csv
+│   │   │   │   ├── 1100AN1015502_stock_projection.png
+│   │   │   │   ├── 1100AN1016202_details.csv
+│   │   │   │   ├── 1100AN1016202_stock_projection.png
+│   │   │   │   ├── 1100AN1016402_details.csv
+│   │   │   │   ├── 1100AN1016402_stock_projection.png
+│   │   │   │   ├── 1100AN1016702_details.csv
+│   │   │   │   ├── 1100AN1016702_stock_projection.png
+│   │   │   │   ├── 1100AN1016890_details.csv
+│   │   │   │   ├── 1100AN1016890_stock_projection.png
+│   │   │   │   ├── 1100AN1016902_details.csv
+│   │   │   │   ├── 1100AN1016902_stock_projection.png
+│   │   │   │   ├── 1100AN1017007_details.csv
+│   │   │   │   ├── 1100AN1017007_stock_projection.png
+│   │   │   │   ├── 1100AN1017402_details.csv
+│   │   │   │   ├── 1100AN1017402_stock_projection.png
+│   │   │   │   ├── 1100AN1017802_details.csv
+│   │   │   │   ├── 1100AN1017802_stock_projection.png
+│   │   │   │   ├── 1100AN1017902_details.csv
+│   │   │   │   ├── 1100AN1017902_stock_projection.png
+│   │   │   │   ├── 1100AN1018003_details.csv
+│   │   │   │   ├── 1100AN1018003_stock_projection.png
+│   │   │   │   ├── 1100AN1018902_details.csv
+│   │   │   │   └── 1100AN1018902_stock_projection.png
+│   │   │   └── Vizon Anatolia
+│   │   │       ├── 5605IMD180837_details.csv
+│   │   │       ├── 5605IMD180837_stock_projection.png
+│   │   │       ├── 5605IMD180838_details.csv
+│   │   │       ├── 5605IMD180838_stock_projection.png
+│   │   │       ├── 5605IMD181027_details.csv
+│   │   │       ├── 5605IMD181027_stock_projection.png
+│   │   │       ├── 5605IMD181031_details.csv
+│   │   │       ├── 5605IMD181031_stock_projection.png
+│   │   │       ├── 5605IMD181323_details.csv
+│   │   │       ├── 5605IMD181323_stock_projection.png
+│   │   │       ├── 5605IMD181324_details.csv
+│   │   │       ├── 5605IMD181324_stock_projection.png
+│   │   │       ├── 5605IMD181327_details.csv
+│   │   │       ├── 5605IMD181327_stock_projection.png
+│   │   │       ├── 5605IMD181490_details.csv
+│   │   │       ├── 5605IMD181490_stock_projection.png
+│   │   │       ├── 5605IMD181617_details.csv
+│   │   │       └── 5605IMD181617_stock_projection.png
+│   │   └── Verano
+│   │       ├── Acqua Microfibra
+│   │       │   ├── 5533IM6010001_details.csv
+│   │       │   ├── 5533IM6010001_stock_projection.png
+│   │       │   ├── 5533IM6010002_details.csv
+│   │       │   ├── 5533IM6010002_stock_projection.png
+│   │       │   ├── 5533IM6010003_details.csv
+│   │       │   ├── 5533IM6010003_stock_projection.png
+│   │       │   ├── 5533IM6010004_details.csv
+│   │       │   ├── 5533IM6010004_stock_projection.png
+│   │       │   ├── 5533IM6010005_details.csv
+│   │       │   ├── 5533IM6010005_stock_projection.png
+│   │       │   ├── 5533IM6010006_details.csv
+│   │       │   ├── 5533IM6010006_stock_projection.png
+│   │       │   ├── 5533IM6010007_details.csv
+│   │       │   ├── 5533IM6010007_stock_projection.png
+│   │       │   ├── 5533IM6010008_details.csv
+│   │       │   ├── 5533IM6010008_stock_projection.png
+│   │       │   ├── 5533IM6010009_details.csv
+│   │       │   ├── 5533IM6010009_stock_projection.png
+│   │       │   ├── 5533IM6010011_details.csv
+│   │       │   ├── 5533IM6010011_stock_projection.png
+│   │       │   ├── 5533IM6010012_details.csv
+│   │       │   └── 5533IM6010012_stock_projection.png
+│   │       ├── Cotton Premium
+│   │       │   ├── 5527IM6010003_details.csv
+│   │       │   ├── 5527IM6010003_stock_projection.png
+│   │       │   ├── 5527IM6010007_details.csv
+│   │       │   ├── 5527IM6010007_stock_projection.png
+│   │       │   ├── 5527IM6010008_details.csv
+│   │       │   ├── 5527IM6010008_stock_projection.png
+│   │       │   ├── 5527IM6010009_details.csv
+│   │       │   ├── 5527IM6010009_stock_projection.png
+│   │       │   ├── 5527IM6010014_details.csv
+│   │       │   ├── 5527IM6010014_stock_projection.png
+│   │       │   ├── 5527IM6010028_details.csv
+│   │       │   ├── 5527IM6010028_stock_projection.png
+│   │       │   ├── 5527IM6010029_details.csv
+│   │       │   ├── 5527IM6010029_stock_projection.png
+│   │       │   ├── 5527IM6010033_details.csv
+│   │       │   ├── 5527IM6010033_stock_projection.png
+│   │       │   ├── 5527IM6010048_details.csv
+│   │       │   ├── 5527IM6010048_stock_projection.png
+│   │       │   ├── 5527IM6010081_details.csv
+│   │       │   ├── 5527IM6010081_stock_projection.png
+│   │       │   ├── 5527IM6010092_details.csv
+│   │       │   ├── 5527IM6010092_stock_projection.png
+│   │       │   ├── 5527IM6010205_details.csv
+│   │       │   ├── 5527IM6010205_stock_projection.png
+│   │       │   ├── 5527IM6010209_details.csv
+│   │       │   ├── 5527IM6010209_stock_projection.png
+│   │       │   ├── 5527IM6010216_details.csv
+│   │       │   ├── 5527IM6010216_stock_projection.png
+│   │       │   ├── 5527IM6010229_details.csv
+│   │       │   ├── 5527IM6010229_stock_projection.png
+│   │       │   ├── 5527IM6010279_details.csv
+│   │       │   ├── 5527IM6010279_stock_projection.png
+│   │       │   ├── 5527IM6010439_details.csv
+│   │       │   ├── 5527IM6010439_stock_projection.png
+│   │       │   ├── 5527IM6010728_details.csv
+│   │       │   ├── 5527IM6010728_stock_projection.png
+│   │       │   ├── 5527IM6010730_details.csv
+│   │       │   ├── 5527IM6010730_stock_projection.png
+│   │       │   ├── 5527IM6010875_details.csv
+│   │       │   ├── 5527IM6010875_stock_projection.png
+│   │       │   ├── 5527IM6010888_details.csv
+│   │       │   ├── 5527IM6010888_stock_projection.png
+│   │       │   ├── 5527IM6011102_details.csv
+│   │       │   ├── 5527IM6011102_stock_projection.png
+│   │       │   ├── 5527IM6011281_details.csv
+│   │       │   ├── 5527IM6011281_stock_projection.png
+│   │       │   ├── 5527IM6011302_details.csv
+│   │       │   ├── 5527IM6011302_stock_projection.png
+│   │       │   ├── 5527IM6012302_details.csv
+│   │       │   ├── 5527IM6012302_stock_projection.png
+│   │       │   ├── 5527IM6012903_details.csv
+│   │       │   ├── 5527IM6012903_stock_projection.png
+│   │       │   ├── 5527IM6013401_details.csv
+│   │       │   ├── 5527IM6013401_stock_projection.png
+│   │       │   ├── 5527IM6013602_details.csv
+│   │       │   ├── 5527IM6013602_stock_projection.png
+│   │       │   ├── 5527IM6013902_details.csv
+│   │       │   ├── 5527IM6013902_stock_projection.png
+│   │       │   ├── 5527IM6014850_details.csv
+│   │       │   ├── 5527IM6014850_stock_projection.png
+│   │       │   ├── 5527IM6016210_details.csv
+│   │       │   ├── 5527IM6016210_stock_projection.png
+│   │       │   ├── 5527IM6016213_details.csv
+│   │       │   ├── 5527IM6016213_stock_projection.png
+│   │       │   ├── 5527IM6016215_details.csv
+│   │       │   ├── 5527IM6016215_stock_projection.png
+│   │       │   ├── 5527IM6016902_details.csv
+│   │       │   ├── 5527IM6016902_stock_projection.png
+│   │       │   ├── 5527IM6018102_details.csv
+│   │       │   ├── 5527IM6018102_stock_projection.png
+│   │       │   ├── 5527IM6018257_details.csv
+│   │       │   ├── 5527IM6018257_stock_projection.png
+│   │       │   ├── 5527IM6018259_details.csv
+│   │       │   ├── 5527IM6018259_stock_projection.png
+│   │       │   ├── 5527IM6018902_details.csv
+│   │       │   └── 5527IM6018902_stock_projection.png
+│   │       ├── Delicia Verano
+│   │       │   ├── 1320ANV010022_details.csv
+│   │       │   ├── 1320ANV010022_stock_projection.png
+│   │       │   ├── 1320ANV010026_details.csv
+│   │       │   ├── 1320ANV010026_stock_projection.png
+│   │       │   ├── 1320ANV010029_details.csv
+│   │       │   ├── 1320ANV010029_stock_projection.png
+│   │       │   ├── 1320ANV010030_details.csv
+│   │       │   ├── 1320ANV010030_stock_projection.png
+│   │       │   ├── 1320ANV010033_details.csv
+│   │       │   ├── 1320ANV010033_stock_projection.png
+│   │       │   ├── 1320ANV010035_details.csv
+│   │       │   ├── 1320ANV010035_stock_projection.png
+│   │       │   ├── 1320ANV010055_details.csv
+│   │       │   ├── 1320ANV010055_stock_projection.png
+│   │       │   ├── 1320ANV010081_details.csv
+│   │       │   ├── 1320ANV010081_stock_projection.png
+│   │       │   ├── 1320ANV010134_details.csv
+│   │       │   ├── 1320ANV010134_stock_projection.png
+│   │       │   ├── 1320ANV010205_details.csv
+│   │       │   ├── 1320ANV010205_stock_projection.png
+│   │       │   ├── 1320ANV010225_details.csv
+│   │       │   ├── 1320ANV010225_stock_projection.png
+│   │       │   ├── 1320ANV010229_details.csv
+│   │       │   ├── 1320ANV010229_stock_projection.png
+│   │       │   ├── 1320ANV010279_details.csv
+│   │       │   ├── 1320ANV010279_stock_projection.png
+│   │       │   ├── 1320ANV010289_details.csv
+│   │       │   ├── 1320ANV010289_stock_projection.png
+│   │       │   ├── 1320ANV010425_details.csv
+│   │       │   ├── 1320ANV010425_stock_projection.png
+│   │       │   ├── 1320ANV010439_details.csv
+│   │       │   ├── 1320ANV010439_stock_projection.png
+│   │       │   ├── 1320ANV010712_details.csv
+│   │       │   ├── 1320ANV010712_stock_projection.png
+│   │       │   ├── 1320ANV010731_details.csv
+│   │       │   ├── 1320ANV010731_stock_projection.png
+│   │       │   ├── 1320ANV011102_details.csv
+│   │       │   ├── 1320ANV011102_stock_projection.png
+│   │       │   ├── 1320ANV011302_details.csv
+│   │       │   ├── 1320ANV011302_stock_projection.png
+│   │       │   ├── 1320ANV013602_details.csv
+│   │       │   ├── 1320ANV013602_stock_projection.png
+│   │       │   ├── 1320ANV016210_details.csv
+│   │       │   ├── 1320ANV016210_stock_projection.png
+│   │       │   ├── 1320ANV016211_details.csv
+│   │       │   ├── 1320ANV016211_stock_projection.png
+│   │       │   ├── 1320ANV016212_details.csv
+│   │       │   ├── 1320ANV016212_stock_projection.png
+│   │       │   ├── 1320ANV016213_details.csv
+│   │       │   ├── 1320ANV016213_stock_projection.png
+│   │       │   ├── 1320ANV016215_details.csv
+│   │       │   ├── 1320ANV016215_stock_projection.png
+│   │       │   ├── 1320ANV016402_details.csv
+│   │       │   ├── 1320ANV016402_stock_projection.png
+│   │       │   ├── 1320ANV018102_details.csv
+│   │       │   ├── 1320ANV018102_stock_projection.png
+│   │       │   ├── 1320ANV018902_details.csv
+│   │       │   └── 1320ANV018902_stock_projection.png
+│   │       ├── Fresquita
+│   │       │   ├── 1300ANV010003_details.csv
+│   │       │   ├── 1300ANV010003_stock_projection.png
+│   │       │   ├── 1300ANV010022_details.csv
+│   │       │   ├── 1300ANV010022_stock_projection.png
+│   │       │   ├── 1300ANV010026_details.csv
+│   │       │   ├── 1300ANV010026_stock_projection.png
+│   │       │   ├── 1300ANV010028_details.csv
+│   │       │   ├── 1300ANV010028_stock_projection.png
+│   │       │   ├── 1300ANV010029_details.csv
+│   │       │   ├── 1300ANV010029_stock_projection.png
+│   │       │   ├── 1300ANV010033_details.csv
+│   │       │   ├── 1300ANV010033_stock_projection.png
+│   │       │   ├── 1300ANV010055_details.csv
+│   │       │   ├── 1300ANV010055_stock_projection.png
+│   │       │   ├── 1300ANV010081_details.csv
+│   │       │   ├── 1300ANV010081_stock_projection.png
+│   │       │   ├── 1300ANV010205_details.csv
+│   │       │   ├── 1300ANV010205_stock_projection.png
+│   │       │   ├── 1300ANV010209_details.csv
+│   │       │   ├── 1300ANV010209_stock_projection.png
+│   │       │   ├── 1300ANV010216_details.csv
+│   │       │   ├── 1300ANV010216_stock_projection.png
+│   │       │   ├── 1300ANV010223_details.csv
+│   │       │   ├── 1300ANV010223_stock_projection.png
+│   │       │   ├── 1300ANV010225_details.csv
+│   │       │   ├── 1300ANV010225_stock_projection.png
+│   │       │   ├── 1300ANV010229_details.csv
+│   │       │   ├── 1300ANV010229_stock_projection.png
+│   │       │   ├── 1300ANV010231_details.csv
+│   │       │   ├── 1300ANV010231_stock_projection.png
+│   │       │   ├── 1300ANV010259_details.csv
+│   │       │   ├── 1300ANV010259_stock_projection.png
+│   │       │   ├── 1300ANV010279_details.csv
+│   │       │   ├── 1300ANV010279_stock_projection.png
+│   │       │   ├── 1300ANV010281_details.csv
+│   │       │   ├── 1300ANV010281_stock_projection.png
+│   │       │   ├── 1300ANV010288_details.csv
+│   │       │   ├── 1300ANV010288_stock_projection.png
+│   │       │   ├── 1300ANV010289_details.csv
+│   │       │   ├── 1300ANV010289_stock_projection.png
+│   │       │   ├── 1300ANV010425_details.csv
+│   │       │   ├── 1300ANV010425_stock_projection.png
+│   │       │   ├── 1300ANV010439_details.csv
+│   │       │   ├── 1300ANV010439_stock_projection.png
+│   │       │   ├── 1300ANV010712_details.csv
+│   │       │   ├── 1300ANV010712_stock_projection.png
+│   │       │   ├── 1300ANV010730_details.csv
+│   │       │   ├── 1300ANV010730_stock_projection.png
+│   │       │   ├── 1300ANV010731_details.csv
+│   │       │   ├── 1300ANV010731_stock_projection.png
+│   │       │   ├── 1300ANV011033_details.csv
+│   │       │   ├── 1300ANV011033_stock_projection.png
+│   │       │   ├── 1300ANV011102_details.csv
+│   │       │   ├── 1300ANV011102_stock_projection.png
+│   │       │   ├── 1300ANV011281_details.csv
+│   │       │   ├── 1300ANV011281_stock_projection.png
+│   │       │   ├── 1300ANV011302_details.csv
+│   │       │   ├── 1300ANV011302_stock_projection.png
+│   │       │   ├── 1300ANV011777_details.csv
+│   │       │   ├── 1300ANV011777_stock_projection.png
+│   │       │   ├── 1300ANV011788_details.csv
+│   │       │   ├── 1300ANV011788_stock_projection.png
+│   │       │   ├── 1300ANV011799_details.csv
+│   │       │   ├── 1300ANV011799_stock_projection.png
+│   │       │   ├── 1300ANV012502_details.csv
+│   │       │   ├── 1300ANV012502_stock_projection.png
+│   │       │   ├── 1300ANV013401_details.csv
+│   │       │   ├── 1300ANV013401_stock_projection.png
+│   │       │   ├── 1300ANV013602_details.csv
+│   │       │   ├── 1300ANV013602_stock_projection.png
+│   │       │   ├── 1300ANV014204_details.csv
+│   │       │   ├── 1300ANV014204_stock_projection.png
+│   │       │   ├── 1300ANV014850_details.csv
+│   │       │   ├── 1300ANV014850_stock_projection.png
+│   │       │   ├── 1300ANV016210_details.csv
+│   │       │   ├── 1300ANV016210_stock_projection.png
+│   │       │   ├── 1300ANV016211_details.csv
+│   │       │   ├── 1300ANV016211_stock_projection.png
+│   │       │   ├── 1300ANV016212_details.csv
+│   │       │   ├── 1300ANV016212_stock_projection.png
+│   │       │   ├── 1300ANV016213_details.csv
+│   │       │   ├── 1300ANV016213_stock_projection.png
+│   │       │   ├── 1300ANV016214_details.csv
+│   │       │   ├── 1300ANV016214_stock_projection.png
+│   │       │   ├── 1300ANV016215_details.csv
+│   │       │   ├── 1300ANV016215_stock_projection.png
+│   │       │   ├── 1300ANV016402_details.csv
+│   │       │   ├── 1300ANV016402_stock_projection.png
+│   │       │   ├── 1300ANV016890_details.csv
+│   │       │   ├── 1300ANV016890_stock_projection.png
+│   │       │   ├── 1300ANV017802_details.csv
+│   │       │   ├── 1300ANV017802_stock_projection.png
+│   │       │   ├── 1300ANV018102_details.csv
+│   │       │   ├── 1300ANV018102_stock_projection.png
+│   │       │   ├── 1300ANV018252_details.csv
+│   │       │   ├── 1300ANV018252_stock_projection.png
+│   │       │   ├── 1300ANV018254_details.csv
+│   │       │   ├── 1300ANV018254_stock_projection.png
+│   │       │   ├── 1300ANV018257_details.csv
+│   │       │   ├── 1300ANV018257_stock_projection.png
+│   │       │   ├── 1300ANV018259_details.csv
+│   │       │   ├── 1300ANV018259_stock_projection.png
+│   │       │   ├── 1300ANV018262_details.csv
+│   │       │   ├── 1300ANV018262_stock_projection.png
+│   │       │   ├── 1300ANV018902_details.csv
+│   │       │   └── 1300ANV018902_stock_projection.png
+│   │       ├── Fresquita Estampado
+│   │       │   ├── 1305ANV010001_details.csv
+│   │       │   ├── 1305ANV010001_stock_projection.png
+│   │       │   ├── 1305ANV010002_details.csv
+│   │       │   ├── 1305ANV010002_stock_projection.png
+│   │       │   ├── 1305ANV010003_details.csv
+│   │       │   ├── 1305ANV010003_stock_projection.png
+│   │       │   ├── 1305ANV010004_details.csv
+│   │       │   ├── 1305ANV010004_stock_projection.png
+│   │       │   ├── 1305ANV010005_details.csv
+│   │       │   ├── 1305ANV010005_stock_projection.png
+│   │       │   ├── 1305ANV010006_details.csv
+│   │       │   ├── 1305ANV010006_stock_projection.png
+│   │       │   ├── 1305ANV010007_details.csv
+│   │       │   ├── 1305ANV010007_stock_projection.png
+│   │       │   ├── 1305ANV010008_details.csv
+│   │       │   ├── 1305ANV010008_stock_projection.png
+│   │       │   ├── 1305ANV010009_details.csv
+│   │       │   ├── 1305ANV010009_stock_projection.png
+│   │       │   ├── 1305ANV010010_details.csv
+│   │       │   ├── 1305ANV010010_stock_projection.png
+│   │       │   ├── 1305ANV010011_details.csv
+│   │       │   └── 1305ANV010011_stock_projection.png
+│   │       ├── Margarita
+│   │       │   ├── 1308ANV010003_details.csv
+│   │       │   ├── 1308ANV010003_stock_projection.png
+│   │       │   ├── 1308ANV010022_details.csv
+│   │       │   ├── 1308ANV010022_stock_projection.png
+│   │       │   ├── 1308ANV010028_details.csv
+│   │       │   ├── 1308ANV010028_stock_projection.png
+│   │       │   ├── 1308ANV010029_details.csv
+│   │       │   ├── 1308ANV010029_stock_projection.png
+│   │       │   ├── 1308ANV010033_details.csv
+│   │       │   ├── 1308ANV010033_stock_projection.png
+│   │       │   ├── 1308ANV010081_details.csv
+│   │       │   ├── 1308ANV010081_stock_projection.png
+│   │       │   ├── 1308ANV010205_details.csv
+│   │       │   ├── 1308ANV010205_stock_projection.png
+│   │       │   ├── 1308ANV010209_details.csv
+│   │       │   ├── 1308ANV010209_stock_projection.png
+│   │       │   ├── 1308ANV010223_details.csv
+│   │       │   ├── 1308ANV010223_stock_projection.png
+│   │       │   ├── 1308ANV010225_details.csv
+│   │       │   ├── 1308ANV010225_stock_projection.png
+│   │       │   ├── 1308ANV010229_details.csv
+│   │       │   ├── 1308ANV010229_stock_projection.png
+│   │       │   ├── 1308ANV010289_details.csv
+│   │       │   ├── 1308ANV010289_stock_projection.png
+│   │       │   ├── 1308ANV010425_details.csv
+│   │       │   ├── 1308ANV010425_stock_projection.png
+│   │       │   ├── 1308ANV010439_details.csv
+│   │       │   ├── 1308ANV010439_stock_projection.png
+│   │       │   ├── 1308ANV010712_details.csv
+│   │       │   ├── 1308ANV010712_stock_projection.png
+│   │       │   ├── 1308ANV010730_details.csv
+│   │       │   ├── 1308ANV010730_stock_projection.png
+│   │       │   ├── 1308ANV010731_details.csv
+│   │       │   ├── 1308ANV010731_stock_projection.png
+│   │       │   ├── 1308ANV011102_details.csv
+│   │       │   ├── 1308ANV011102_stock_projection.png
+│   │       │   ├── 1308ANV011302_details.csv
+│   │       │   ├── 1308ANV011302_stock_projection.png
+│   │       │   ├── 1308ANV013401_details.csv
+│   │       │   ├── 1308ANV013401_stock_projection.png
+│   │       │   ├── 1308ANV013602_details.csv
+│   │       │   ├── 1308ANV013602_stock_projection.png
+│   │       │   ├── 1308ANV014850_details.csv
+│   │       │   ├── 1308ANV014850_stock_projection.png
+│   │       │   ├── 1308ANV016210_details.csv
+│   │       │   ├── 1308ANV016210_stock_projection.png
+│   │       │   ├── 1308ANV016212_details.csv
+│   │       │   ├── 1308ANV016212_stock_projection.png
+│   │       │   ├── 1308ANV016213_details.csv
+│   │       │   ├── 1308ANV016213_stock_projection.png
+│   │       │   ├── 1308ANV016215_details.csv
+│   │       │   ├── 1308ANV016215_stock_projection.png
+│   │       │   ├── 1308ANV016402_details.csv
+│   │       │   ├── 1308ANV016402_stock_projection.png
+│   │       │   ├── 1308ANV018102_details.csv
+│   │       │   ├── 1308ANV018102_stock_projection.png
+│   │       │   ├── 1308ANV018254_details.csv
+│   │       │   ├── 1308ANV018254_stock_projection.png
+│   │       │   ├── 1308ANV018257_details.csv
+│   │       │   ├── 1308ANV018257_stock_projection.png
+│   │       │   ├── 1308ANV018902_details.csv
+│   │       │   └── 1308ANV018902_stock_projection.png
+│   │       ├── Natura Algodón 100 gr
+│   │       │   ├── 1528IMQ100003_details.csv
+│   │       │   ├── 1528IMQ100003_stock_projection.png
+│   │       │   ├── 1528IMQ100209_details.csv
+│   │       │   ├── 1528IMQ100209_stock_projection.png
+│   │       │   ├── 1528IMQ100225_details.csv
+│   │       │   ├── 1528IMQ100225_stock_projection.png
+│   │       │   ├── 1528IMQ100229_details.csv
+│   │       │   ├── 1528IMQ100229_stock_projection.png
+│   │       │   ├── 1528IMQ100730_details.csv
+│   │       │   ├── 1528IMQ100730_stock_projection.png
+│   │       │   ├── 1528IMQ101102_details.csv
+│   │       │   ├── 1528IMQ101102_stock_projection.png
+│   │       │   ├── 1528IMQ101302_details.csv
+│   │       │   ├── 1528IMQ101302_stock_projection.png
+│   │       │   ├── 1528IMQ103401_details.csv
+│   │       │   ├── 1528IMQ103401_stock_projection.png
+│   │       │   ├── 1528IMQ103602_details.csv
+│   │       │   ├── 1528IMQ103602_stock_projection.png
+│   │       │   ├── 1528IMQ106215_details.csv
+│   │       │   ├── 1528IMQ106215_stock_projection.png
+│   │       │   ├── 1528IMQ106402_details.csv
+│   │       │   ├── 1528IMQ106402_stock_projection.png
+│   │       │   ├── 1528IMQ108257_details.csv
+│   │       │   ├── 1528IMQ108257_stock_projection.png
+│   │       │   ├── 1528IMQ108902_details.csv
+│   │       │   └── 1528IMQ108902_stock_projection.png
+│   │       ├── Natura Algodón 500 gr
+│   │       │   ├── 5528IMQ200003_details.csv
+│   │       │   ├── 5528IMQ200003_stock_projection.png
+│   │       │   ├── 5528IMQ200209_details.csv
+│   │       │   ├── 5528IMQ200209_stock_projection.png
+│   │       │   ├── 5528IMQ200225_details.csv
+│   │       │   ├── 5528IMQ200225_stock_projection.png
+│   │       │   ├── 5528IMQ200229_details.csv
+│   │       │   ├── 5528IMQ200229_stock_projection.png
+│   │       │   ├── 5528IMQ200730_details.csv
+│   │       │   ├── 5528IMQ200730_stock_projection.png
+│   │       │   ├── 5528IMQ201102_details.csv
+│   │       │   ├── 5528IMQ201102_stock_projection.png
+│   │       │   ├── 5528IMQ201302_details.csv
+│   │       │   ├── 5528IMQ201302_stock_projection.png
+│   │       │   ├── 5528IMQ203401_details.csv
+│   │       │   ├── 5528IMQ203401_stock_projection.png
+│   │       │   ├── 5528IMQ203602_details.csv
+│   │       │   ├── 5528IMQ203602_stock_projection.png
+│   │       │   ├── 5528IMQ206215_details.csv
+│   │       │   ├── 5528IMQ206215_stock_projection.png
+│   │       │   ├── 5528IMQ206402_details.csv
+│   │       │   ├── 5528IMQ206402_stock_projection.png
+│   │       │   ├── 5528IMQ208257_details.csv
+│   │       │   ├── 5528IMQ208257_stock_projection.png
+│   │       │   ├── 5528IMQ208902_details.csv
+│   │       │   └── 5528IMQ208902_stock_projection.png
+│   │       ├── Perle Verano
+│   │       │   ├── 1310ANV010022_details.csv
+│   │       │   ├── 1310ANV010022_stock_projection.png
+│   │       │   ├── 1310ANV010029_details.csv
+│   │       │   ├── 1310ANV010029_stock_projection.png
+│   │       │   ├── 1310ANV010032_details.csv
+│   │       │   ├── 1310ANV010032_stock_projection.png
+│   │       │   ├── 1310ANV010033_details.csv
+│   │       │   ├── 1310ANV010033_stock_projection.png
+│   │       │   ├── 1310ANV010081_details.csv
+│   │       │   ├── 1310ANV010081_stock_projection.png
+│   │       │   ├── 1310ANV010205_details.csv
+│   │       │   ├── 1310ANV010205_stock_projection.png
+│   │       │   ├── 1310ANV010209_details.csv
+│   │       │   ├── 1310ANV010209_stock_projection.png
+│   │       │   ├── 1310ANV010210_details.csv
+│   │       │   ├── 1310ANV010210_stock_projection.png
+│   │       │   ├── 1310ANV010216_details.csv
+│   │       │   ├── 1310ANV010216_stock_projection.png
+│   │       │   ├── 1310ANV010225_details.csv
+│   │       │   ├── 1310ANV010225_stock_projection.png
+│   │       │   ├── 1310ANV010229_details.csv
+│   │       │   ├── 1310ANV010229_stock_projection.png
+│   │       │   ├── 1310ANV010231_details.csv
+│   │       │   ├── 1310ANV010231_stock_projection.png
+│   │       │   ├── 1310ANV010234_details.csv
+│   │       │   ├── 1310ANV010234_stock_projection.png
+│   │       │   ├── 1310ANV010279_details.csv
+│   │       │   ├── 1310ANV010279_stock_projection.png
+│   │       │   ├── 1310ANV010288_details.csv
+│   │       │   ├── 1310ANV010288_stock_projection.png
+│   │       │   ├── 1310ANV010289_details.csv
+│   │       │   ├── 1310ANV010289_stock_projection.png
+│   │       │   ├── 1310ANV010425_details.csv
+│   │       │   ├── 1310ANV010425_stock_projection.png
+│   │       │   ├── 1310ANV010439_details.csv
+│   │       │   ├── 1310ANV010439_stock_projection.png
+│   │       │   ├── 1310ANV010712_details.csv
+│   │       │   ├── 1310ANV010712_stock_projection.png
+│   │       │   ├── 1310ANV010731_details.csv
+│   │       │   ├── 1310ANV010731_stock_projection.png
+│   │       │   ├── 1310ANV010903_details.csv
+│   │       │   ├── 1310ANV010903_stock_projection.png
+│   │       │   ├── 1310ANV011102_details.csv
+│   │       │   ├── 1310ANV011102_stock_projection.png
+│   │       │   ├── 1310ANV011302_details.csv
+│   │       │   ├── 1310ANV011302_stock_projection.png
+│   │       │   ├── 1310ANV013401_details.csv
+│   │       │   ├── 1310ANV013401_stock_projection.png
+│   │       │   ├── 1310ANV013602_details.csv
+│   │       │   ├── 1310ANV013602_stock_projection.png
+│   │       │   ├── 1310ANV014204_details.csv
+│   │       │   ├── 1310ANV014204_stock_projection.png
+│   │       │   ├── 1310ANV014850_details.csv
+│   │       │   ├── 1310ANV014850_stock_projection.png
+│   │       │   ├── 1310ANV016210_details.csv
+│   │       │   ├── 1310ANV016210_stock_projection.png
+│   │       │   ├── 1310ANV016213_details.csv
+│   │       │   ├── 1310ANV016213_stock_projection.png
+│   │       │   ├── 1310ANV016215_details.csv
+│   │       │   ├── 1310ANV016215_stock_projection.png
+│   │       │   ├── 1310ANV016402_details.csv
+│   │       │   ├── 1310ANV016402_stock_projection.png
+│   │       │   ├── 1310ANV017802_details.csv
+│   │       │   ├── 1310ANV017802_stock_projection.png
+│   │       │   ├── 1310ANV018102_details.csv
+│   │       │   ├── 1310ANV018102_stock_projection.png
+│   │       │   ├── 1310ANV018252_details.csv
+│   │       │   ├── 1310ANV018252_stock_projection.png
+│   │       │   ├── 1310ANV018254_details.csv
+│   │       │   ├── 1310ANV018254_stock_projection.png
+│   │       │   ├── 1310ANV018257_details.csv
+│   │       │   ├── 1310ANV018257_stock_projection.png
+│   │       │   ├── 1310ANV018259_details.csv
+│   │       │   ├── 1310ANV018259_stock_projection.png
+│   │       │   ├── 1310ANV018262_details.csv
+│   │       │   ├── 1310ANV018262_stock_projection.png
+│   │       │   ├── 1310ANV018902_details.csv
+│   │       │   └── 1310ANV018902_stock_projection.png
+│   │       └── Sinfonia
+│   │           ├── 5532IM6010001_details.csv
+│   │           ├── 5532IM6010001_stock_projection.png
+│   │           ├── 5532IM6010002_details.csv
+│   │           ├── 5532IM6010002_stock_projection.png
+│   │           ├── 5532IM6010003_details.csv
+│   │           ├── 5532IM6010003_stock_projection.png
+│   │           ├── 5532IM6010004_details.csv
+│   │           ├── 5532IM6010004_stock_projection.png
+│   │           ├── 5532IM6010005_details.csv
+│   │           ├── 5532IM6010005_stock_projection.png
+│   │           ├── 5532IM6010006_details.csv
+│   │           ├── 5532IM6010006_stock_projection.png
+│   │           ├── 5532IM6010007_details.csv
+│   │           ├── 5532IM6010007_stock_projection.png
+│   │           ├── 5532IM6010008_details.csv
+│   │           └── 5532IM6010008_stock_projection.png
+│   └── Scripts
+│       ├── __init__.py
+│       ├── Consolidado_resultados.py
+│       ├── Ejecucion_cadena.py
+│       ├── Modelo_optimización_Stock.py
+│       ├── Proyección_demanda.py
+│       ├── Proyección_stock.py
+│       └── Stock_actual.py
+└── Streamlit
+    ├── __init__.py
+    ├── dashboard.py
+    ├── Stock_Flow_Dashboard.py
+    └── Test.py

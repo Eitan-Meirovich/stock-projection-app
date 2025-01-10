@@ -1,11 +1,16 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import subprocess
 import os
 
 # Obtener el directorio base (donde se encuentra Main.py)
-base_dir = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project'
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Definir la lista de scripts en el orden de ejecución con rutas absolutas
 scripts = [
+    "src/data/hierarchy_map.py",
     "run_processor.py",
     "src/data/Data_groups.py",
     "src/models/Invierno/Holt_Sarima25.py",

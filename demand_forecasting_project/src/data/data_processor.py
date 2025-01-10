@@ -6,7 +6,8 @@ from datetime import datetime
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
-from data.data_loader import DataLoader
+from src.data.data_loader import DataLoader
+
 
 class DataProcessor:
     def __init__(self, raw_data_path, processed_data_path, hierarchy_path):
@@ -46,8 +47,8 @@ class DataProcessor:
             Q1 = group['Sales'].quantile(0.25)
             Q3 = group['Sales'].quantile(0.75)
             IQR = Q3 - Q1
-            lower_bound = Q1 - 1.5 * IQR
-            upper_bound = Q3 + 1.5 * IQR
+            lower_bound = Q1 - 2.5 * IQR
+            upper_bound = Q3 + 2.5 * IQR
             return group[(group['Sales'] >= lower_bound) & (group['Sales'] <= upper_bound)]
         
         return data.groupby(['Product_Code', data['Date'].dt.month]).apply(remove_group_outliers).reset_index(drop=True)
@@ -66,9 +67,6 @@ class DataProcessor:
         df['Quarter'] = df['Date'].dt.quarter
         df['DayOfWeek'] = df['Date'].dt.dayofweek
         
-        # Lag features
-        df['Sales_LastMonth'] = df.groupby('Product_Code')['Sales'].shift(1)
-        df['Sales_LastYear'] = df.groupby('Product_Code')['Sales'].shift(12)
         
         return df
     
