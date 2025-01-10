@@ -97,7 +97,7 @@ def main():
 
         for i, mes in enumerate(meses):
             if i == 0:
-                df[mes] = df['Stock Total'] - df[mes]+safety_stock
+                df[mes] = df['Stock Total'] - df[mes]+ safety_stock
             else:
                 prev_month = meses[i - 1]
                 df[mes] = df[prev_month] - df[mes]
@@ -224,7 +224,7 @@ def main():
             filtered_data = data[(data["Familia"] == family_filter) & (data["Codigo Producto"].isin(product_filter))]
 
         grouped_data = process_data(filtered_data, safety_stock, grouping_option, view_option)
-
+        grouped_data['Stock Total'] = grouped_data['Stock Total'] + safety_stock
         tab1, tab2 = st.tabs(["Tabla Consolidada", "Gráficos"])
 
         with tab1:
@@ -233,9 +233,9 @@ def main():
             simulated_data = simulate_stock_with_safety(grouped_data, safety_stock)
         
             if view_option == "Trimestres":
-                columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total Ajustado', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre'] if view_option == "Trimestres" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total Ajustado'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']) if col in simulated_data.columns]
+                columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre'] if view_option == "Trimestres" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']) if col in simulated_data.columns]
             elif view_option == "Meses":
-                 columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total Ajustado'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] if view_option == "Meses" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total Ajustado', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre']) if col in simulated_data.columns]
+                 columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] if view_option == "Meses" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre']) if col in simulated_data.columns]
             formatted_data = format_numbers(simulated_data[columns_to_display])
             styled_data = style_data(formatted_data)
 
