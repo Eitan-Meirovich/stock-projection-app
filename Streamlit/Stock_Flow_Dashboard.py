@@ -183,7 +183,7 @@ def main():
 
         st.sidebar.header("Filtros")
         
-        safety_stock = st.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0, key="safety_stock_input")
+        safety_stock = st.sidebar.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0)
         
         grouping_option = st.sidebar.radio(
             "Selecciona el nivel de agrupación:",
@@ -229,7 +229,6 @@ def main():
 
         with tab1:
             st.subheader("Stock de Seguridad y Datos Consolidados")
-            safety_stock = st.sidebar.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0)
             simulated_data = simulate_stock_with_safety(grouped_data, safety_stock)
         
             if view_option == "Trimestres":
