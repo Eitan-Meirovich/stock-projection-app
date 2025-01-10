@@ -52,7 +52,7 @@ if normalized_data:
     consolidated_df = pd.concat(normalized_data, ignore_index=True)
     
     # Exportar a un archivo CSV consolidado
-    output_path = "Results/consolidado_datos.csv"  # Cambia el nombre y la ubicación según lo necesites
+    output_path = "Stock_Optimization/Results/consolidado_datos.csv"  # Cambia el nombre y la ubicación según lo necesites
     consolidated_df.to_csv(output_path, index=False)
     print(f"Archivo consolidado generado en: {output_path}")
 else:

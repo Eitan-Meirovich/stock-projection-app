@@ -3,10 +3,10 @@ import os
 
 # Definir la lista de scripts en el orden de ejecución
 scripts = [
-    "Scripts/Stock_actual.py",
-    "Scripts/Proyección_demanda.py",
-    "Scripts/Modelo_optimización_Stock.py",
-    "Scripts/Consolidado_resultados.py"
+    "Stock_Optimization/Scripts/Stock_actual.py",
+    "Stock_Optimization/Scripts/Proyección_demanda.py",
+    "Stock_Optimization/Scripts/Modelo_optimización_Stock.py",
+    "Stock_Optimization/Scripts/Consolidado_resultados.py"
 ]
 
 # Ejecutar cada script

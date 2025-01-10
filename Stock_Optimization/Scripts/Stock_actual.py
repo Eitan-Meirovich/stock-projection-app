@@ -42,5 +42,5 @@ if __name__ == "__main__":
     stock_data = get_stock_data()
     if stock_data is not None:
         # Guardar los datos en un CSV (opcional)
-        stock_data.to_csv("Data/stock_data.csv", index=False)
+        stock_data.to_csv("Stock_Optimization/Data/stock_data.csv", index=False)
         print("Datos de stock guardados en 'stock_data.csv'.")

@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 import os
 
 # Rutas de los archivos de entrada
-stock_path = 'Data/stock_data.csv'  # Cambia a la ruta correcta de tu archivo
-forecast_path = 'Data/consolidated_forecast.csv'  # Cambia a la ruta correcta de tu archivo
-relation_path = 'Data/relation_cone_skein.xlsx'  # Archivo con la relación entre conos y ovillos
+stock_path = 'Stock_Optimization/Data/stock_data.csv'  # Cambia a la ruta correcta de tu archivo
+forecast_path = 'Stock_Optimization/Data/consolidated_forecast.csv'  # Cambia a la ruta correcta de tu archivo
+relation_path = 'Stock_Optimization/Data/relation_cone_skein.xlsx'  # Archivo con la relación entre conos y ovillos
 
 # Cargar los datos
 stock_data = pd.read_csv(stock_path)

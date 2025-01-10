@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Rutas de los archivos de entrada
-stock_path = 'Data/stock_data.csv'  # Cambia a la ruta correcta de tu archivo
+stock_path = 'Stock_Optimization/Data/stock_data.csv'  # Cambia a la ruta correcta de tu archivo
 forecast_path = 'Data/consolidated_forecast.csv'  # Cambia a la ruta correcta de tu archivo
 combined_data_path = 'Data/combined_stock_forecast.csv'  # Archivo combinado existente
 
