@@ -62,7 +62,7 @@ def main():
     )
 
 
-    file_path = r"C:\\Users\\Ukryl\\stock-projection-app\\Stock_Optimization\\Results\\consolidado_datos.csv"
+    file_path = './Stock_Optimization\\Results\\consolidado_datos.csv'
 
     def load_data():
         try:
