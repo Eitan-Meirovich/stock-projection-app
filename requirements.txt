@@ -97,7 +97,7 @@ matplotlib==3.9.2
 memory-profiler==0.61.0
 methodtools==0.4.7
 miniful==0.0.6
-mkl-service==2.4.0
+mkl-service==2.4.2
 ml-dtypes==0.4.1
 multimethod==1.12
 munkres==1.1.4
