@@ -6,8 +6,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Cargar datos
-file_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\processed_data_invierno.csv'
-
+file_path = 'demand_forecasting_project/data/processed/processed_data_invierno.csv'
 data = pd.read_csv(file_path)
 data['Date'] = pd.to_datetime(data['Date'])
 print("Datos disponibles desde:", data['Date'].min(), "hasta:", data['Date'].max())
@@ -24,7 +23,7 @@ hw_model = ExponentialSmoothing(monthly_sales['Sales'],
                                  seasonal='add',
                                  seasonal_periods=12,
                                  trend='add').fit()
-hw_forecast = hw_model.forecast(steps=12)
+hw_forecast = hw_model.forecast(steps=15)
 
 # --- Modelo SARIMA ---
 print("Entrenando modelo SARIMA...")
@@ -33,7 +32,7 @@ sarima_model = SARIMAX(monthly_sales['Sales'],
                        seasonal_order=(1, 1, 1, 12),
                        enforce_stationarity=False, 
                        enforce_invertibility=False).fit()
-sarima_forecast = sarima_model.get_forecast(steps=12)
+sarima_forecast = sarima_model.get_forecast(steps=15)
 sarima_forecast_mean = sarima_forecast.predicted_mean
 
 # --- Datos Reales 2024 ---
@@ -54,10 +53,20 @@ hybrid_mae = mean_absolute_error(aligned_real_sales, aligned_hybrid_forecast)
 hybrid_rmse = np.sqrt(mean_squared_error(aligned_real_sales, aligned_hybrid_forecast))
 print(f"Modelo Híbrido -> MAE: {hybrid_mae:.2f}, RMSE: {hybrid_rmse:.2f}")
 
+# --- Gráfico ---
+plt.figure(figsize=(12, 6))
+plt.plot(real_monthly_sales['Date'][:aligned_real_sales_length], aligned_real_sales, label='Ventas Reales', marker='o', color='blue')
+plt.plot(real_monthly_sales['Date'][:aligned_real_sales_length], aligned_hybrid_forecast, label='Híbrido Holt-Winters + SARIMA', linestyle='--', color='purple')
+plt.title('Modelo Híbrido - Año 2024')
+plt.xlabel('Fecha')
+plt.ylabel('Ventas Totales')
+plt.legend()
+plt.grid()
+plt.show()
 
 # Guardar el archivo
 import os
-output_dir = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Invierno'
+output_dir = 'demand_forecasting_project/data/processed/Invierno/'
 output_file = '2025_forecast_Invierno.csv'
 
 hybrid_forecast_df = pd.DataFrame({

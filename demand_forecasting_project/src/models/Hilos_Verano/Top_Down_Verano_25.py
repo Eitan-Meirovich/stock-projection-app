@@ -1,8 +1,17 @@
 import pandas as pd
+from datetime import datetime, date
+import os
 
+# Obtener la fecha actual
+current_date = datetime.now()
+forecast_start = pd.Timestamp(current_date.year, current_date.month, 1) + pd.DateOffset(months=1)
+forecast_periods = 15  # 15 meses móviles
+
+forecast_dir = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Verano'
+forecast_path = 'Proyección_15MM_Verano.csv'
 # Cargar las proyecciones SARIMA (corregidas al primer día del mes)
-forecast_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Verano\2025_forecast_Verano_ETS.csv'  # Ruta del archivo generado
-forecast_df = pd.read_csv(forecast_path)
+forecast_df = pd.read_csv(os.path.join(forecast_dir, forecast_path))
+
 
 # Convertir fechas a formato datetime y periodos mensuales
 forecast_df['Date'] = pd.to_datetime(forecast_df['Date'])

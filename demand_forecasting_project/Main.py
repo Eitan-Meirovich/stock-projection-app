@@ -13,14 +13,15 @@ scripts = [
     "src/data/hierarchy_map.py",
     "run_processor.py",
     "src/data/Data_groups.py",
-    "src/models/Invierno/Holt_Sarima25.py",
+    "src/models/Proyecciones.py",
     "src/models/Invierno/Top_Down.py",
-    "src/models/Hilos_Verano/Proyección_Verano.py",
     "src/models/Hilos_Verano/Top_Down_Verano_25.py",
-    "src/models/Bebé/Proyecciones_25.py",
     "src/models/Bebé/Top_Down_25.py",
     "Consolidado_resultados.py",
-    "merged_data.py"
+    "src/data/Demanda_real.py",
+    "merged_data.py",
+    "src/Descarga_Stock.py",
+    "src/flow_details.py"
 ]
 
 # Ejecutar cada script

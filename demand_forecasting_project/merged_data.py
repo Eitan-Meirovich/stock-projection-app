@@ -2,68 +2,101 @@ import pandas as pd
 
 # Rutas de los archivos
 projections_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\output\Consolidated_forecast.csv'
-sales_paths = {
-    "bebé": r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\input\Bebé.xlsx',
-    "hilos_verano": r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\input\Hilos Verano.xlsx',
-    "invierno": r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\input\Invierno.xlsx'
-}
+sales_paths = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\input\demand_data.csv'
+
+# Cargar datos de proyecciones
+forecast_df = pd.read_csv(projections_path)
+forecast_df = forecast_df.rename(columns={"Super Familia": "SuperFamily"})
+forecast_df["Projection"] = pd.to_numeric(forecast_df["Projection"], errors="coerce")
+forecast_df["Date"] = pd.to_datetime(forecast_df["Date"], errors="coerce")
+forecast_df = forecast_df.dropna(subset=["Date"])
+forecast_df["Mes"] = forecast_df["Date"].dt.month
+forecast_df["Year"] = forecast_df["Date"].dt.year
+
+# Agrupar datos
+grouped_data = forecast_df.groupby(
+    ['Mes', 'SuperFamily', 'Familia', 'Codigo Producto', 'Year']
+)['Projection'].sum().reset_index()
+
+# Separar datos por año
+data_2025 = grouped_data[grouped_data['Year'] == 2025].copy()
+data_2026 = grouped_data[grouped_data['Year'] == 2026].copy()
+
+# Crear DataFrame base
+base_keys = ['Mes', 'SuperFamily', 'Familia', 'Codigo Producto']
+base_df = grouped_data[base_keys].drop_duplicates()
+
+# Preparar datos 2025 y 2026
+data_2025_clean = data_2025.drop('Year', axis=1).rename(columns={'Projection': 'Projection 2025'})
+data_2026_clean = data_2026.drop('Year', axis=1).rename(columns={'Projection': 'Projection 2026'})
+
+# Unir los datos
+final_data = base_df.merge(
+    data_2025_clean, 
+    on=base_keys, 
+    how='left'
+).merge(
+    data_2026_clean,
+    on=base_keys,
+    how='left'
+)
+
+# Llenar NaN con 0
+final_data = final_data.fillna(0)
 
 # Procesar datos de ventas
-def process_sales_data(path, super_family_name):
-    df = pd.read_excel(path)
+def process_sales_data(path):
+    df = pd.read_csv(path)
     df = df.rename(columns={
         "Fecha": "Date",
-        "Super Familia": "SuperFamily",
-        "Codigo Producto": "Codigo Producto",
-        "Familia": "Familia",
-        "Venta": "Sales"
+        "codigoProducto": "Codigo Producto",
+        "Demanda": "Sales"
     })
-    df["SuperFamily"] = super_family_name
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-    df = df.dropna(subset=["Date"])  # Eliminar filas con fechas no válidas
-    df["Mes"] = df["Date"].dt.month  # Extraer solo el número del mes
-    df["Year"] = df["Date"].dt.year  # Extraer el año
-    # Seleccionar solo columnas numéricas para la suma
-    numeric_cols = [col for col in df.columns if col not in ["Date", "Mes", "Year", "SuperFamily", "Familia", "Codigo Producto"]]
-    df = df.groupby(["Mes", "Year", "SuperFamily", "Familia", "Codigo Producto"])[numeric_cols].sum().reset_index()
+    df = df.dropna(subset=["Date"])
+    df["Mes"] = df["Date"].dt.month
+    df["Year"] = df["Date"].dt.year
+    numeric_cols = [col for col in df.columns if col not in ["Date", "Codigo Producto", "Mes", "Year"]]
+    df = df.groupby(["Date", "Mes", "Year", "Codigo Producto"])[numeric_cols].sum().reset_index()
     return df
 
-# Cargar y procesar datos de ventas
-bebe_sales = process_sales_data(sales_paths["bebé"], "Bebé")
-verano_sales = process_sales_data(sales_paths["hilos_verano"], "Hilos Verano")
-invierno_sales = process_sales_data(sales_paths["invierno"], "Invierno")
-
-# Consolidar datos de ventas
-sales_data = pd.concat([bebe_sales, verano_sales, invierno_sales], ignore_index=True)
+# Procesar ventas
+sales_data = process_sales_data(sales_paths)
 sales_data = sales_data.pivot_table(
-    index=["Mes", "SuperFamily", "Familia", "Codigo Producto"],
+    index=["Mes", "Codigo Producto"],
     columns="Year",
     values="Sales"
 ).reset_index()
-sales_data.columns = ["Mes", "SuperFamily", "Familia", "Codigo Producto"] + [f"Venta {col}" for col in sales_data.columns[4:]]
+sales_data.columns = ["Mes", "Codigo Producto"] + [f"Venta {col}" for col in sales_data.columns[2:]]
 
-# Cargar y procesar datos de proyecciones
-forecast_df = pd.read_csv(projections_path)
-forecast_df = forecast_df.rename(columns={"Super Familia": "SuperFamily"})
-forecast_df["Date"] = pd.to_datetime(forecast_df["Date"], errors="coerce")
-forecast_df = forecast_df.dropna(subset=["Date"])
-forecast_df["Mes"] = forecast_df["Date"].dt.month  # Extraer solo el número del mes
-forecast_df = forecast_df[["Mes", "SuperFamily", "Familia", "Codigo Producto", "Projection"]]
-
-# Combinar proyecciones y ventas
+# Combinar con datos de ventas
 merged_data = pd.merge(
     sales_data,
-    forecast_df,
-    on=["Mes", "SuperFamily", "Familia", "Codigo Producto"],
-    how="outer"
+    final_data,
+    on=["Mes", "Codigo Producto"],
+    how="inner"
 )
 
 # Reordenar columnas
-columns_order = ["Mes", "SuperFamily", "Familia", "Codigo Producto", "Venta 2024", "Venta 2023", "Venta 2022", "Projection"]
+columns_order = [
+    "Mes", "SuperFamily", "Familia", "Codigo Producto",
+    "Venta 2025", "Venta 2024", "Venta 2023", "Venta 2022",
+    "Projection 2025", "Projection 2026"
+]
 merged_data = merged_data.reindex(columns=columns_order, fill_value=0)
 
+# Eliminar registros con Mes nulo
+merged_data = merged_data.dropna(subset=['Mes'])
+
+print("\nVerificación antes de guardar:")
+print("Número total de registros:", len(merged_data))
+print("Registros por mes:")
+print(merged_data['Mes'].value_counts().sort_index())
+print("\nBuscando valores nulos:")
+print(merged_data.isnull().sum())
+
 # Guardar los datos combinados
-output_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\output\merged.csv'
+output_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\output\merged2.csv'
 merged_data.to_csv(output_path, index=False)
 
-print(f"Archivo combinado guardado exitosamente en: {output_path}")
+print(f"\nArchivo combinado guardado exitosamente en: {output_path}")

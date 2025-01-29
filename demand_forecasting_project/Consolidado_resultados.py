@@ -50,9 +50,8 @@ def consolidar_proyecciones():
     }, inplace=True)
         # Formatear la columna 'Projection' si existe
         if "Projection" in consolidated_df.columns:
-            consolidated_df["Projection"] = consolidated_df["Projection"].apply(
-                lambda x: f"{int(x):,}".replace(",", "X").replace(".", ",").replace("X", ".")
-            )
+            consolidated_df["Projection"] = pd.to_numeric(consolidated_df["Projection"], errors="coerce")
+            
         # Definir la ruta del archivo consolidado
         consolidated_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\output\Consolidated_forecast.csv'
 

@@ -2,7 +2,6 @@ import streamlit as st
 from dashboard import main as proyeccion_dashboard
 from Stock_Flow_Dashboard import main as stock_dashboard
 
-st.set_page_config(layout="wide", page_title="Dashboard Consolidado")
 
 # Barra lateral para seleccionar la página
 page = st.sidebar.selectbox(

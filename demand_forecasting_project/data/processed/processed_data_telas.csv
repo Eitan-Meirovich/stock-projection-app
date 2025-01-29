@@ -1,82 +1,74 @@
 Date,Año,Mes,RUPR,Super Familia,Familia,Descripción Producto,Product_Code,unidad,Sales,Year,Month,Quarter,DayOfWeek
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,17.0,2024,1,1,0
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,14.0,2024,1,1,0
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,16.0,2024,1,1,0
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,22.0,2024,1,1,0
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,124.0,2024,1,1,0
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,20.0,2024,1,1,0
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,15.0,2024,1,1,0
 2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,14.0,2024,1,1,0
-2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,18.0,2024,1,1,0
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,23.0,2024,2,1,3
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,8.0,2024,2,1,3
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,11.0,2024,2,1,3
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,16.0,2024,1,1,0
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,13.0,2024,1,1,0
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,17.0,2024,1,1,0
+2024-01-01,2024,1,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,52.0,2024,1,1,0
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,91.0,2024,2,1,3
 2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,9.0,2024,2,1,3
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,8.0,2024,2,1,3
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,8.0,2024,2,1,3
-2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,11.0,2024,2,1,3
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,9.0,2024,2,1,3
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,9.0,2024,2,1,3
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,12.0,2024,2,1,3
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,11.0,2024,2,1,3
+2024-02-01,2024,2,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,9.0,2024,2,1,3
+2024-03-01,2024,3,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,200.0,2024,3,1,4
+2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,7.0,2024,3,1,4
 2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,2.0,2024,3,1,4
-2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,2.0,2024,3,1,4
-2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,2.0,2024,3,1,4
-2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,2.0,2024,3,1,4
-2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,6.0,2024,3,1,4
 2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,3.0,2024,3,1,4
-2024-03-01,2024,3,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,202.0,2024,3,1,4
-2024-04-01,2024,4,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,34.0,2024,4,2,0
-2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,3.0,2024,4,2,0
-2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,3.0,2024,4,2,0
-2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,5.0,2024,4,2,0
-2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,4.0,2024,4,2,0
+2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,2.0,2024,3,1,4
+2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,3.0,2024,3,1,4
+2024-03-01,2024,3,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,2.0,2024,3,1,4
 2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,5.0,2024,4,2,0
 2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,8.0,2024,4,2,0
-2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,4.0,2024,5,2,2
-2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,1.0,2024,5,2,2
-2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,2.0,2024,5,2,2
-2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,1.0,2024,5,2,2
-2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,3.0,2024,5,2,2
+2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,4.0,2024,4,2,0
+2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,3.0,2024,4,2,0
+2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,5.0,2024,4,2,0
+2024-04-01,2024,4,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,34.0,2024,4,2,0
+2024-04-01,2024,4,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,3.0,2024,4,2,0
 2024-05-01,2024,5,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,6.0,2024,5,2,2
 2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,3.0,2024,5,2,2
-2024-06-01,2024,6,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,19.0,2024,6,2,5
+2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,1.0,2024,5,2,2
+2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,2.0,2024,5,2,2
+2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,3.0,2024,5,2,2
+2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,3.0,2024,5,2,2
+2024-05-01,2024,5,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,1.0,2024,5,2,2
 2024-06-01,2024,6,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,1.0,2024,6,2,5
+2024-06-01,2024,6,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,1.0,2024,6,2,5
+2024-06-01,2024,6,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,17.0,2024,6,2,5
 2024-06-01,2024,6,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,1.0,2024,6,2,5
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,4.0,2024,7,3,0
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,3.0,2024,7,3,0
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,1.0,2024,7,3,0
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,2.0,2024,7,3,0
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,15.0,2024,7,3,0
+2024-07-01,2024,7,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,11.0,2024,7,3,0
 2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,1.0,2024,7,3,0
 2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,1.0,2024,7,3,0
-2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,4.0,2024,7,3,0
-2024-08-01,2024,8,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,107.0,2024,8,3,3
-2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,3.0,2024,8,3,3
+2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,2.0,2024,7,3,0
+2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,3.0,2024,7,3,0
+2024-07-01,2024,7,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,2.0,2024,7,3,0
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,1.0,2024,8,3,3
 2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,1.0,2024,8,3,3
-2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,3.0,2024,8,3,3
-2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,2.0,2024,8,3,3
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,35.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,3.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,6.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,6.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,6.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,3.0,2024,9,3,6
-2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,5.0,2024,9,3,6
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,4.0,2024,10,4,1
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,15.0,2024,10,4,1
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,15.0,2024,10,4,1
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,5.0,2024,10,4,1
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,4.0,2024,10,4,1
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,1.0,2024,8,3,3
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,1.0,2024,8,3,3
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,1.0,2024,8,3,3
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,105.0,2024,8,3,3
+2024-08-01,2024,8,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,3.0,2024,8,3,3
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,7.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,2.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,7.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,5.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,2.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,6.0,2024,9,3,6
+2024-09-01,2024,9,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,41.0,2024,9,3,6
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,59.0,2024,10,4,1
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,5.0,2024,10,4,1
 2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,18.0,2024,10,4,1
-2024-10-01,2024,10,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,63.0,2024,10,4,1
-2024-11-01,2024,11,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,68.0,2024,11,4,4
-2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,4.0,2024,11,4,4
-2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,4.0,2024,11,4,4
-2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,3.0,2024,11,4,4
-2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,4.0,2024,11,4,4
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,5.0,2024,10,4,1
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,9.0,2024,10,4,1
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,6.0,2024,10,4,1
+2024-10-01,2024,10,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,5.0,2024,10,4,1
+2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,1.0,2024,11,4,4
 2024-11-01,2024,11,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,2.0,2024,11,4,4
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,2.0,2024,12,4,6
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c001,TARCR110OZ001,UN,1.0,2024,12,4,6
+2024-11-01,2024,11,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,58.0,2024,11,4,4
 2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c002,TARCR110OZ002,UN,2.0,2024,12,4,6
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,1.0,2024,12,4,6
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,1.0,2024,12,4,6
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c005,TARCR110OZ005,UN,1.0,2024,12,4,6
-2024-12-01,2024,12,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,24.0,2024,12,4,6
-2025-01-01,2025,1,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,2.0,2025,1,1,2
-2025-01-01,2025,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c003,TARCR110OZ003,UN,1.0,2025,1,1,2
-2025-01-01,2025,1,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c026,TARCR110OZ026,UN,1.0,2025,1,1,2
+2024-12-01,2024,12,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,36.0,2024,12,4,6
+2024-12-01,2024,12,R30,TELAS,Tela Arpillera Color Rollo,Tela Arpillera Color Rollo 25 Metros 10 OZ c007,TARCR110OZ007,UN,2.0,2024,12,4,6
+2025-01-01,2025,1,R30,TELAS,Tela Arpillera Rollo,Tela Arpillera Rollo 50M 10 OZ c010,TARPR210OZ010,UN,8.0,2025,1,1,2

@@ -1,268 +1,906 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
-from io import BytesIO
+import plotly.graph_objects as go
+from datetime import datetime
+import calendar
+import os
+import numpy as np
+
+# 1. Configuración de página en modo WIDE
+st.set_page_config(
+    page_title="Dashboard de Gestión de Stock",
+    layout="wide"  # <-- Ajusta para usar todo el ancho disponible
+)
+WINDING_RATE = 500  # Kg por día que se pueden ovillar
+MONTH_NAMES_ES = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+]
+
 def main():
-    # Estilo personalizado
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #e6f7ff;
-        }
-        h1, h2, h3 {
-            color: #003366;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
-        .metric-container {
-            display: flex;
-            justify-content: space-around;
-            margin: 40px 0;
-        }
-        .metric {
-            width: 20%;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-weight: bold;
-        }
-        .metric h2 {
-            margin: 0;
-            font-size: 18px;
-            color: #003366;
-        }
-        .metric p {
-            margin: 5px 0 0;
-            font-size: 40px;
-            color: black;
-        }
-        .metric .growth-positive {
-            color: #003366;
-        }
-        .metric .growth-negative {
-            color: red;
-        }
-        .content {
-            text-align: center;
-        }
-        .stTabs {
-            margin-top: 20px;
-        }
-        .stDataFrame {
-            margin: auto;
-            width: 90%;
-        }
+    st.markdown("""
+       <style>
+                :root{
+                    --primary-color: #1E40AF;
+                    --secondary-color: #3B82F6;
+                    --acent: #60A5FA;
+                    --text-color: #F8FAFC;
+                }
+                /* Ajusta la sección principal para centrar y dar max-width */
+                .block-container > {
+                    padding: 2rem 3rem;
+                    max-width: 400rem;
+                    max-height: 500rem;
+                    margin: 0 auto;
+                }
+                /* Centrar títulos */
+                h1,h2,h3{
+                color: var(--primary-color) !important;
+                font-family: 'Arial';
+                text-align: center !important;
+                }
+                h1{
+                font-size: 3rem !important;
+                text-align: center !important;
+                margin-bottom: 2rem !important;
+                }
+                h2{
+                font-size: 2rem !important;
+                margin-bottom: 2rem !important;
+                }
+                h3{
+                font-size: 2rem !important;
+                margin-bottom: 2rem !important;
+                }
+                /* Radio buttons centrados */
+                
+                 div.row-widget.stRadio > div {
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    gap: 2rem;
+                }
+                /* Métricas o KPIs: centrado */
+
+                div.metric-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    text-align: center;
+                    justify-content: center; 
+                    gap: 2rem;
+                    margin: 2rem 0;
+                }
+                div.metric-container > div {
+                    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                    transition: transform 0.2s;
+                    display: flex;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                div.metric-container > div:hover {
+                    transform: translateY(-2px);
+                }
+                .metric-container h2 {
+                    font-size: 1.2rem;
+                    color: var(--primary);
+                    margin-bottom: 0.5rem;
+                    text-align: center !important;
+                }
+                .metric-container p {
+                    font-size: 1.8rem;
+                    text-align: center !important;
+                    font-weight: bold;
+                    color: var(--secondary);
+                    margin: 0;
+                    text-align: center !important;
+                }
+
+                /* Tablas */
+                .dataframe {
+                    font-size: 14px !important;
+                    border-radius: 8px !important;
+                    overflow: hidden !important;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+                    margin: 1rem auto !important; /* centrar la tabla en la página */
+                }
+                .dataframe thead th {
+                    background-color: var(--primary) !important;
+                    color: White!important;
+                    font-size: 20px !important;
+                    font-weight: 700 !important;
+                    padding: 12px !important;
+                    text-align: center !important;
+                }
+                .dataframe tbody td {
+                    padding: 10px !important;
+                    font-size: 20px !important;
+                    border-bottom: 1px solid #E2E8F0 !important;
+                    text-align: center !important;
+                }
+                .dataframe tr:nth-child(even) {
+                    background-color: #F8FAFC !important;
+                }
+                .dataframe tr:hover {
+                    background-color: #EFF6FF !important;
+                }
+
+                /* Tabs centradas */
+                .stTabs [data-baseweb="tab-list"] {
+                    justify-content: center !important;
+                    border-bottom: 2px solid #E2E8F0;
+                }
+                .stTabs [data-baseweb="tab"] {
+                    padding: 1rem 2rem !important;
+                    font-weight: 600 !important;
+                    color: var(--primary) !important;
+                    border: none !important;
+                    background-color: transparent !important;
+                    justify-content: center !important;
+                }
+                .stTabs [data-baseweb="tab-highlight"] {
+                    background-color: var(--primary) !important;
+                }
+                .stTabs [aria-selected="true"] {
+                    color: var(--primary) !important;
+                    border-bottom: 2px solid var(--primary) !important;
+                }
+
+                /* Sidebar */
+                section[data-testid="stSidebar"] {
+                    background-color: #F1F5F9;
+                }
+                section[data-testid="stSidebar"] .block-container {
+                    border-radius: 12px;
+                    background: white;
+                    padding: 1.5rem;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                }
+                section[data-testid="stSidebar"] h2 {
+                    color: var(--primary) !important;
+                    font-size: 1.5rem !important;
+                    margin-bottom: 1.5rem !important;
+                    text-align: center !important;
+                }
+
+                /* Ajuste para los radio buttons de la sidebar */
+                .stRadio > label {
+                    padding: 1rem;
+                    background-color: #F8FAFC;
+                    border-radius: 6px;
+                    margin-bottom: 0.5rem;
+                    transition: all 0.2s;
+                    text-align: center !important;
+                    display: block;
+                }
+                .stRadio > label:hover {
+                    background-color: #EFF6FF;
+            }
         </style>
+    """, unsafe_allow_html=True)
+    def load_data():
+        """Carga los datos de stock y proyecciones."""
+        try:
+            stock_df = pd.read_csv('./Stock_Optimization/Results/Stock_Cono_Ovillo.csv')
+            st.sidebar.markdown("### Stock Data Loaded")
+            st.sidebar.markdown(f"Total productos: {len(stock_df)}")
+
+            # 2. Cargar proyecciones y procesar fechas
+            projection_df = pd.read_csv('./demand_forecasting_project/data/output/Consolidated_forecast.csv')
+            projection_df['Date'] = pd.to_datetime(projection_df['Date'])
+
+            # Extraer mes y año de la fecha
+            projection_df['Month'] = projection_df['Date'].dt.month
+            projection_df['Year'] = projection_df['Date'].dt.year
+                    # 3. Agrupar proyecciones por producto y mes
+            projection_grouped = projection_df.groupby(
+                ['Codigo Producto', 'Familia', 'Super Familia', 'Month']
+            ).agg({
+                'Projection': 'sum'
+            }).reset_index()
+            # Crear un diccionario con las proyecciones mensuales
+            projection_dict = {}
+            for _, row in projection_grouped.iterrows():
+                key = row['Codigo Producto']
+                if key not in projection_dict:
+                    projection_dict[key] = {
+                        'Familia': row['Familia'],
+                        'SuperFamily': row['Super Familia'],
+                        'monthly_projection': {i: 0 for i in range(1, 13)}  # Inicializar todos los meses
+                    }
+                projection_dict[key]['monthly_projection'][row['Month']] = row['Projection']
+        
+            # 4. Combinar con datos de stock
+            combined_data = []
+            for _, stock_row in stock_df.iterrows():
+                product_code = stock_row['Ovillo_Code']
+                proj_data = projection_dict.get(product_code, {
+                    'Familia': 'Sin Familia',
+                    'SuperFamily': 'Sin Super Familia',
+                    'monthly_projection': {i: 0 for i in range(1, 13)}
+                })
+            
+                combined_row = {
+                    'Product_Code': product_code,
+                    'Stock_Cones': stock_row['Cono_Stock'],
+                    'Stock_Ovillo': stock_row['Ovillo_Stock'],
+                    'Stock_Total': stock_row['Stock_total'],
+                    'Familia': proj_data['Familia'],
+                    'SuperFamily': proj_data['SuperFamily'],
+                    'monthly_projection': proj_data['monthly_projection']
+                }
+                combined_data.append(combined_row)
+        
+            combined_df = pd.DataFrame(combined_data)
+
+            # 5. Diagnóstico final
+            st.sidebar.markdown("### Diagnóstico Final")
+            st.sidebar.markdown(f"Productos totales: {len(combined_df)}")
+            st.sidebar.markdown(
+                "Productos con proyección: "
+                f"{len(combined_df[combined_df['monthly_projection'].apply(lambda x: sum(x.values()) > 0)])}"
+            )
+        
+            return combined_df
+        
+        except Exception as e:
+            st.error(f"Error al cargar los datos: {str(e)}")
+            st.error(f"Tipo de error: {e.__class__.__name__}")
+            return None
+
+
+    def get_forecast_months():
+        """Obtiene la lista de meses para los próximos 15 meses desde el mes actual."""
+        current_date = datetime.now()
+        months = []
+    
+        for i in range(15):
+            future_date = current_date + pd.DateOffset(months=i+1)
+            month_name = MONTH_NAMES_ES[future_date.month - 1]
+            month_year = f"{month_name} {future_date.year}"
+            months.append(month_year)
+    
+        return months
+        
+    def calculate_monthly_flow(item, safety_stock=0):
+        """Calcula el flujo mensual de stock considerando proyecciones mensuales."""
+        monthly_flow = {}
+        current_stock = item['Stock_Total'] + safety_stock
+        monthly_projections = item['monthly_projection']
+    
+        current_date = datetime.now()
+        for i in range(15):
+            future_date = current_date + pd.DateOffset(months=i+1)
+            month_key = f"{MONTH_NAMES_ES[future_date.month - 1]} {future_date.year}"
+        
+            monthly_demand = monthly_projections.get(future_date.month, 0)
+        
+            remaining_stock = current_stock - monthly_demand
+            monthly_flow[month_key] = remaining_stock
+            current_stock = remaining_stock
+    
+        return monthly_flow
+    
+    def process_stock_flow(data, safety_stock, grouping_option):
+        """Procesa los datos de stock y flujo."""
+        forecast_months = get_forecast_months()
+    
+        # Definir los trimestres
+        quarters = {}
+        for i, month in enumerate(forecast_months):
+            quarter_num = (i // 3) + 1
+            if quarter_num not in quarters:
+                quarters[quarter_num] = []
+            quarters[quarter_num].append(month)
+
+        data['has_associated_cone'] = data['Stock_Cones'] > 0
+        data['Stock_Total'] = data['Stock_Total'] + safety_stock
+    
+        processed_items = []
+        for _, item in data.iterrows():
+            monthly_flow = calculate_monthly_flow(item, safety_stock)
+            item_dict = item.to_dict()
+            item_dict['monthly_flow'] = monthly_flow
+            processed_items.append(item_dict)
+
+        grouped = pd.DataFrame(processed_items).groupby(grouping_option)
+    
+        processed_results = []
+        for group, items in grouped:
+            monthly_flows = {}
+            for month in forecast_months:
+                monthly_flows[month] = sum(
+                    it['monthly_flow'][month]
+                    for it in processed_items if it[grouping_option] == group
+                    )
+
+            quarterly_data = {}
+            for quarter_num, months in quarters.items():
+                quarterly_data[f'{quarter_num}° Trimestre'] = monthly_flows[months[-1]]
+
+            processed_results.append({
+                'group': group,
+                'stockCones': items['Stock_Cones'].sum(),
+                'stockOvillo': items['Stock_Ovillo'].sum(),
+                'stockInitial': items['Stock_Total'].sum(),
+                'monthly': monthly_flows,
+                'quarterly': quarterly_data,
+                'hasStockout': any(val <= 0 for val in monthly_flows.values())
+            })
+
+        return processed_results
+    
+    def create_detailed_table(data):
+        detailed_data = []
+        for row in data:
+            detailed_row = {
+                'Super Familia': row['group'],
+                'Stock Conos (Kg)': row['stockCones'],
+                'Stock Ovillos (Kg)': row['stockOvillo'],
+                'Stock Inicial (Kg)': row['stockInitial'],
+                **{f"{month} (Kg)": value for month, value in row['monthly'].items()},
+                **{f"{quarter} (Kg)": value for quarter, value in row['quarterly'].items()}
+            }
+            detailed_data.append(detailed_row)
+        return pd.DataFrame(detailed_data)
+    
+    def calculate_winding_recommendations(data):
+        """Calcula las recomendaciones de ovillado considerando tendencias."""
+        recommendations = []
+    
+        for row in data:
+            monthly_data = list(row['monthly'].items())
+            current_ovillo_stock = row['stockOvillo']
+            current_cono_stock = row['stockCones']
+            monthly_projection = row.get('Projection', 0) / 12 if 'Projection' in row else 0
+        
+            for idx, (month, projected_stock) in enumerate(monthly_data):
+                months_until_need = idx
+                if projected_stock < monthly_projection and current_cono_stock > 0:
+                    stock_needed = monthly_projection - projected_stock
+                    # Usar aquí la constante WINDING_RATE
+                    days_needed = round(min(stock_needed, current_cono_stock) / WINDING_RATE)
+                    months_needed = round(days_needed / 29, 1)
+                
+                    if months_until_need <= 1:
+                        priority = 'Alta'
+                    elif months_until_need <= 4:
+                        priority = 'Media'
+                    else:
+                        priority = 'Baja'
+                
+                    recommendations.append({
+                        'Mes': month,
+                        'Cantidad Necesaria': round(stock_needed),
+                        'Conos Disponibles': round(current_cono_stock),
+                        'Stock Ovillos': round(current_ovillo_stock),
+                        'Días Necesarios': days_needed,
+                        'Meses Necesarios': months_needed,
+                        'Prioridad': priority,
+                        'Grupo': row['group'],
+                        'Stock Proyectado': round(projected_stock),
+                        'Demanda Mensual': round(monthly_projection)
+                    })
+                    current_cono_stock = max(0, current_cono_stock - stock_needed)
+    
+        # Ordenar por prioridad
+        priority_order = {'Alta': 0, 'Media': 1, 'Baja': 2}
+        recommendations.sort(key=lambda x: (priority_order[x['Prioridad']], x['Mes']))
+    
+        return recommendations
+    
+    def create_stock_flow_chart(data, view_type='monthly'):
+        if view_type == 'monthly':
+            monthly_data = []
+            for row in data:
+                for month, value in row['monthly'].items():
+                    monthly_data.append({
+                        'Grupo': row['group'],
+                        'Período': month,
+                        'Stock': value
+                    })
+            df_plot = pd.DataFrame(monthly_data)
+
+        else:
+            quarterly_data = []
+            for row in data:
+                for quarter, value in row['quarterly'].items():
+                    quarterly_data.append({
+                        'Grupo': row['group'],
+                        'Período': quarter,
+                        'Stock': value
+                    })
+            df_plot = pd.DataFrame(quarterly_data)
+        
+        fig = go.Figure()
+
+        for grupo in df_plot['Grupo'].unique():
+            df_grupo = df_plot[df_plot['Grupo'] == grupo]
+            fig.add_trace(go.Scatter(
+                x=df_grupo['Período'],
+                y=df_grupo['Stock'],
+                name=grupo,
+                mode='lines+markers',
+                line=dict(width=3),
+                marker=dict(size=8),
+                hovertemplate="<b>%{x}</b><br>Stock: %{y:,.0f} Kg<br><extra></extra>"
+            ))
+
+        fig.update_layout(
+            title={
+                'text': 'Proyección de Stock por Período',
+                'y': 0.95,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            },
+            xaxis_title="Período",
+            yaxis_title="Stock (Kg)",
+            hovermode='x unified',
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1
+            ),
+            plot_bgcolor='white',
+            height=500
+        )
+    
+        fig.update_xaxes(tickangle=45)
+        fig.add_hline(y=0, line_dash="dash", line_color="red", annotation_text="Nivel Crítico")
+    
+        return fig
+    def format_number(value):
+        return f"{value:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    
+    def create_priority_table(recommendations):
+        if not recommendations:
+            return None
+        df= pd.DataFrame(recommendations)
+
+        def style_priority_table(df):
+
+            def prioerity_color(val):
+                if val == 'Alta':
+                    color = 'red'
+                elif val == 'Media':
+                    color = 'orange'
+                else:
+                    color = 'green'
+                return f'color: {color}'
+            return df.style.applymap(prioerity_color, subset=['Prioridad']).format({
+                'Cantidad Necesaria': '{:,.0f}',
+                'Conos Disponibles': '{:,.0f}',
+                'Días Necesarios': '{:,.0f}'
+            }).set_properties(**{'text-align': 'center'})
+        return style_priority_table(df)
+    
+    def style_dataframe(df):
+        def cell_style(val, is_numeric=True):
+            try:
+                val = float(val) if is_numeric else val
+                if is_numeric:
+                    color = 'blue' if val > 0 else 'red'
+                    return f'color: {color}; font-weight: bold; text-align: center'
+                return 'text-align: left'
+            
+            except:
+                return 'text-align: left'
+
+        styled = df.style
+        for col in df.columns:
+            is_numeric = (col != 'Grupo')
+            styled = styled.applymap(lambda x: cell_style(x, is_numeric), subset=[col])
+
+       
+
+        return (styled.format({col: format_number for col in df.columns if col != 'Grupo'})
+                    .set_properties(**{'text-align': 'center', 'width': '120px'})
+                    .set_table_styles([
+                        {'selector': 'th', 'props': [('text-align', 'center')]},
+                        {'selector': 'td', 'props': [('text-align', 'center')]}
+                    ]))
+
+    def create_stock_comparison_chart(data):
+        stock_comparison = pd.DataFrame([{
+            'Grupo': row['group'],
+            'Stock Ovillos': row['stockOvillo'],
+            'Stock Conos': row['stockCones']
+        } for row in data])
+    
+        fig = go.Figure()
+    
+        fig.add_trace(go.Bar(
+            name='Stock Ovillos',
+            x=stock_comparison['Grupo'],
+            y=stock_comparison['Stock Ovillos'],
+            marker_color='#2ecc71'
+        ))
+    
+        fig.add_trace(go.Bar(
+            name='Stock Conos',
+            x=stock_comparison['Grupo'],
+            y=stock_comparison['Stock Conos'],
+            marker_color='#3498db'
+        ))
+    
+        fig.update_layout(
+            title={
+                'text': 'Distribución de Stock: Ovillos vs Conos',
+                'y': 0.95,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            },
+            xaxis_title="Grupo de Productos",
+            yaxis_title="Stock (Kg)",
+            barmode='group',
+            height=400,
+            plot_bgcolor='white',
+            bargap=0.15,
+            bargroupgap=0.1
+        )
+    
+        return fig
+    
+    def display_kpis(data):
+        if data is None or data.empty:
+            st.error("No hay datos disponibles para mostrar KPIs")
+            return
+
+        cols = st.columns(4)
+        
+        # Corrección: Agregar validación de datos
+        total_stock = data['Stock_Total'].sum() if 'Stock_Total' in data.columns else 0
+        cols[0].metric(
+            "Stock Total",
+            f"{total_stock:,.0f} Kg",
+            delta=None,
+            help="Stock total disponible incluyendo ovillos y conos"
+        )
+
+    def create_summary_table(data, view_type="Mensual", table_type="Resumida"):
+        if table_type == "Detallada":
+            cols = ['Grupo', 'Stock Conos (Kg)', 'Stock Ovillos (Kg)', 'Stock Inicial (Kg)']
+        else:
+            cols = ['Grupo', 'Stock Inicial (Kg)']
+    
+        if view_type == "Mensual":
+            monthly_cols = [f"{month} (Kg)" for month in data[0]['monthly'].keys()]
+            cols.extend(monthly_cols)
+        else:
+            quarterly_cols = [f"{quarter} (Kg)" for quarter in data[0]['quarterly'].keys()]
+            cols.extend(quarterly_cols)
+        
+        table_data = []
+        for row in data:
+            table_row = {
+                'Grupo': row['group'],
+                'Stock Inicial (Kg)': row['stockInitial']
+            }
+        
+            if table_type == "Detallada":
+                table_row.update({
+                    'Stock Conos (Kg)': row['stockCones'],
+                    'Stock Ovillos (Kg)': row['stockOvillo']
+                })
+            
+            if view_type == "Mensual":
+                table_row.update({
+                    f"{month} (Kg)": value
+                    for month, value in row['monthly'].items()
+                })
+            else:
+                table_row.update({
+                    f"{quarter} (Kg)": value
+                    for quarter, value in row['quarterly'].items()
+                })
+            table_data.append(table_row)
+    
+        df = pd.DataFrame(table_data)
+        # Reordenar columnas en el orden deseado
+        df = df[[c for c in cols if c in df.columns] + [c for c in df.columns if c not in cols]]
+        return df
+    
+    def get_stock_status(value, stock_cones):
+        if value > 0:
+            return 'normal'
+        elif value == 0:
+            return 'alert'
+        else:
+            if stock_cones > abs(value):
+                return 'using_cones'
+            else:
+                return 'critical'
+            
+        # Convertir columnas a float nuevamente para poder hacer sum
+    def str_to_float(val):
+        # Helper para convertir "00.000" => float
+        return float(
+            str(val).replace(".","").replace(",",".") 
+            if pd.notnull(val) and val != "" else 0
+        )
+            
+    def calculate_advanced_kpis(processed_data, original_data):
+            """
+            Calcula KPIs más profundos:
+            - Tasa de Agotamiento (porcentaje de meses con stock negativo)
+            - Fill Rate (simplificado)
+            - Días de Inventario (total stock vs. demanda diaria promedio)
+            Nota: El Fill Rate exacto requiere simular demanda satisfecha/insatisfecha.
+            Aquí se hace un approach muy sencillo.
+            """
+            if not processed_data:
+                return {"stockout_rate": 0, "fill_rate": 0, "days_of_inventory": 0}
+        
+            # --- 1) Tasa de Agotamiento ---
+            negative_count = 0
+            total_months = 0
+        
+            # Recorremos cada agrupación (ej. cada familia, super familia, etc.)
+            for row in processed_data:
+                leftover_vals = row['monthly'].values()  # stock resultante mes a mes
+                total_months += len(leftover_vals)
+                negative_count += sum(1 for val in leftover_vals if val < 0)
+        
+            stockout_rate = (negative_count / total_months * 100) if total_months else 0
+
+            # --- 2) Fill Rate (simplificado) ---
+            # Suponemos que cada vez que stock es negativo un mes, se deja de atender esa parte.
+            # Fill Rate = (1 - (Agotamiento)) x 100? 
+            # No es exacto, pero sirve de aproximación rápida:
+            fill_rate = 100 - stockout_rate if stockout_rate < 100 else 0
+        
+            # --- 3) Días de Inventario ---
+            # Tomamos el stock total de todos los grupos (stockInitial sumado) 
+            total_stock = sum(row['stockInitial'] for row in processed_data)
+        
+            # Sumamos la demanda 12 meses (de la DataFrame original) para tener la "demanda anual"
+            # "original_data" = subset de data con 'monthly_projection'
+            if original_data is not None and 'monthly_projection' in original_data.columns:
+                monthly_demand_12 = 0
+                for i in range(1, 13):
+                    # sumamos la demanda del mes i de todos los productos
+                    monthly_demand_12 += original_data['monthly_projection'].apply(lambda x: x.get(i, 0)).sum()
+            else:
+                monthly_demand_12 = 0
+        
+            # Demanda diaria promedio
+            daily_demand = (monthly_demand_12 / (12*30)) if monthly_demand_12 else 0
+        
+            days_of_inventory = total_stock / daily_demand if daily_demand > 0 else 0
+
+            return {
+                    "stockout_rate": stockout_rate,     # Porcentaje
+                    "fill_rate": fill_rate,            # Porcentaje
+                    "days_of_inventory": days_of_inventory
+                }
+    # ------------------------------------------------
+    #            INDICADORES CLAVE (KPIs)
+    # ------------------------------------------------
+    data = load_data()
+
+    if data is not None:
+
+        with st.sidebar:
+            st.header("Configuración")
+            st.markdown("---")
+
+            safety_stock = st.number_input(
+                "Stock de Seguridad (Kg)",
+                min_value=0,
+                value=0,
+                step=100,
+            help="Cantidad adicional de stock para mantener como seguridad"
+        )
+
+            grouping_option = st.radio(
+                "Nivel de agrupación",
+                ('Super Familia', 'Familia', 'Codigo Producto'),
+                index=0
+        )
+
+            column_mapping = {
+                'Super Familia': 'SuperFamily',
+                'Familia': 'Familia',
+                'Codigo Producto': 'Product_Code'
+            }
+
+            # Filtrar por familia si seleccionamos "Codigo Producto"
+            if grouping_option == 'Codigo Producto':
+                if "Familia" in data.columns:
+                    all_families = sorted(data["Familia"].dropna().unique())
+                    selected_family = st.selectbox(
+                        "Selecciona una Familia (opcional):",
+                        options=["(Ver todas)"] + list(all_families)
+                    )
+                    if selected_family != "(Ver todas)":
+                        data = data[data['Familia'] == selected_family]
+
+            # Multiselect de grupos
+            all_group_values = sorted(data[column_mapping[grouping_option]].dropna().unique())
+            grouping_filter = st.multiselect(
+                f"Selecciona {grouping_option}(s):",
+                options=all_group_values,
+                default=all_group_values
+            )
+        
+            if not grouping_filter:
+                grouping_filter = all_group_values
+        
+            data_filtered = data[data[column_mapping[grouping_option]].isin(grouping_filter)]
+
+            processed_data = process_stock_flow(data_filtered, safety_stock, column_mapping[grouping_option])
+
+
+        
+        total_stock = data['Stock_Total'].sum() if 'Stock_Total' in data.columns else 0
+
+        
+        # Productos en Riesgo
+        productos_riesgo = sum(1 for row in processed_data if row['hasStockout'])
+
+
+        # Calcular demanda aproximada a 3 meses
+        total_demanda_3m = sum(
+            abs(row['monthly'][list(row['monthly'].keys())[2]] - row['monthly'][list(row['monthly'].keys())[0]])
+            for row in processed_data
+        ) / 3 if processed_data else 0
+
+        if total_demanda_3m > 0:
+            cobertura = total_stock / total_demanda_3m
+            
+        else:
+            cobertura = "N/A"
+
+        # Eficiencia de Stock
+        total_ovillos = sum(row['stockOvillo'] for row in processed_data)
+        eficiencia = (total_ovillos / total_stock) * 100 if total_stock else 0
+
+    formatted_Total_stock = format_number(total_stock)
+    formatted_producto_riesgo = format_number(productos_riesgo)
+    formatted_cobertura = f"{cobertura:,.1f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    formatted_eficiencia = f"{eficiencia:.1f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+    st.title("🧶 Dashboard de Gestión de Stock")
+    st.markdown(
+        f"""
+        <div class="metric-container">
+            <div>
+                <h2>Stock Total</h2>
+                <p>{formatted_Total_stock} Kg</p>
+            </div>
+            <div>
+                <h2>N°Productos en Riesgo</h2>
+                <p>{formatted_producto_riesgo} Productos</p>
+            </div>
+            <div>
+                <h2>Meses de cobertura</h2>
+                <p>{formatted_cobertura} Meses</p>
+            </div>
+            <div>
+                <h2>% Eficiencia</h2>
+                <p>
+                    {formatted_eficiencia} %
+                </p>
+            </div>
+        </div>
         """,
         unsafe_allow_html=True
     )
 
+    # ------------------------------------------------
+    #  PESTAÑAS DE VISUALIZACIÓN
+    # ------------------------------------------------
 
-    file_path = './Stock_Optimization/Results/consolidado_datos.csv'
+    st.markdown("---")
+    tab1, tab2, tab3, tab4 = st.tabs([
+            "📊 Análisis de Stock",
+            "⚠️ Alertas y Prioridades",
+            "📈 Proyecciones",
+            "📐 KPIs Avanzados"
+        ])
 
-    def load_data():
-        try:
-            data = pd.read_csv(file_path)
-            data['Fecha'] = pd.to_datetime(data['Fecha'], errors='coerce')
-            data['Mes'] = data['Fecha'].dt.month
+    with tab1:
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            view_type = st.selectbox("Selecciona Tipo de visualización", ["Mensual", "Trimestral"], key="view_type")
+        with col2:
+            table_type = st.selectbox("Selecciona Desglose", ["Resumida", "Detallada"], key="table_type")
+            
+        st.markdown("<h3 style='text-align: center'>Resumen de Stock</h3>", unsafe_allow_html=True)
+    
+        df = create_summary_table(processed_data, view_type, table_type)
+        st.dataframe(style_dataframe(df), use_container_width=True,height=400)
+    
 
-            meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-            data['Mes Nombre'] = data['Mes'].map({i + 1: mes for i, mes in enumerate(meses)})
-
-            if 'Stock Total' not in data.columns:
-                data['Stock Total'] = 0
-
-            grouped = data.groupby(['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total', 'Mes Nombre']).agg({
-                'Projection': 'sum'
-            }).reset_index()
-
-            pivoted = grouped.pivot(index=['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total'], columns='Mes Nombre', values='Projection').fillna(0).reset_index()
-
-            for mes in meses:
-                if mes not in pivoted.columns:
-                    pivoted[mes] = 0
-
-            return pivoted
-        except Exception as e:
-            st.error(f"Error al cargar el archivo: {e}")
-            return None
-
-    def process_data(df, safety_stock, grouping_option, view_type):
-        
-        meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-
-        for i, mes in enumerate(meses):
-            if i == 0:
-                df[mes] = df['Stock Total'] - df[mes]+ safety_stock
+    with tab2:
+        st.markdown("<h3 style='text-align: center'>Alertas de Stock</h3>", unsafe_allow_html=True)
+    
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            priority_filter = st.selectbox("Filtrar por prioridad", ["Todas", "Alta", "Media", "Baja"])
+    
+        recommendations = calculate_winding_recommendations(processed_data)
+    
+        if recommendations:
+            if priority_filter != "Todas":
+                recommendations = [r for r in recommendations if r['Prioridad'] == priority_filter]
+            
+            if recommendations:
+                priority_table = create_priority_table(recommendations)
+                st.dataframe(
+                    priority_table,
+                    use_container_width=True,
+                    height=400
+                )
             else:
-                prev_month = meses[i - 1]
-                df[mes] = df[prev_month] - df[mes]
+                st.info(f"No hay alertas con prioridad {priority_filter}")
+        else:
+            st.info("No hay alertas de stock que mostrar")
 
-        df['Primer Trimestre'] = df[['Enero', 'Febrero', 'Marzo']].sum(axis=1)
-        df['Segundo Trimestre'] = df[['Abril', 'Mayo', 'Junio']].sum(axis=1)
-        df['Tercer Trimestre'] = df[['Julio', 'Agosto', 'Septiembre']].sum(axis=1)
-        df['Cuarto Trimestre'] = df[['Octubre', 'Noviembre', 'Diciembre']].sum(axis=1)
-
-        if grouping_option == 'Super Familia':
-            grouped_data = df.groupby('Super Familia', as_index=False).agg(
-               {   
-                    'Stock Total': 'sum',
-                    'Primer Trimestre': 'sum',
-                    'Segundo Trimestre': 'sum',
-                    'Tercer Trimestre': 'sum',
-                    'Cuarto Trimestre': 'sum',
-                    **({mes: 'sum' for mes in meses} if view_type == 'Meses' else {})
-                }
-            )
-        elif grouping_option == 'Familia':
-            grouped_data = df.groupby(['Super Familia', 'Familia'], as_index=False).agg(
-                {
-                    'Stock Total': 'sum',
-                    'Primer Trimestre': 'sum',
-                    'Segundo Trimestre': 'sum',
-                    'Tercer Trimestre': 'sum',
-                    'Cuarto Trimestre': 'sum',
-                    **({mes: 'sum' for mes in meses} if view_type == 'Meses' else {})
-                }
-            )
-        elif grouping_option == 'Codigo Producto':
-            grouped_data = df.groupby(['Super Familia', 'Familia', 'Codigo Producto'], as_index=False).agg(
-                {
-                    'Stock Total': 'sum',
-                    'Primer Trimestre': 'sum',
-                    'Segundo Trimestre': 'sum',
-                    'Tercer Trimestre': 'sum',
-                    'Cuarto Trimestre': 'sum',
-                    **({mes: 'sum' for mes in meses} if view_type == 'Meses' else {})
-                }
-            )
-
-        return grouped_data
-
-    def download_excel(df):
-        output = BytesIO()
-        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-            df.to_excel(writer, index=False, sheet_name='Datos Procesados')
-        return output.getvalue()
-
-    def simulate_stock_with_safety(df, safety_stock):
-        simulated_df = df.copy()
-        simulated_df['Stock Total Ajustado'] = simulated_df['Stock Total'] + safety_stock
-        cols = list(simulated_df.columns)
-        cols.insert(cols.index('Stock Total') + 1, cols.pop(cols.index('Stock Total Ajustado')))
-        simulated_df = simulated_df[cols]
-        return simulated_df
-
-    def format_numbers(df):
-        numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
-        for col in numeric_columns:
-            df[col] = df[col].apply(lambda x: f"{x:,.0f}".replace(",", "#").replace(".", ",").replace("#", "."))
-        return df
-
-    def style_data(df):
-        def apply_styles(val):
-            try:
-                val = float(val.replace(".", "").replace(",", "."))
-                if val < 0:
-                    return "color: red; font-weight: bold;"
-                else:
-                    return "color: blue; font-weight: bold;"
-            except:
-                return ""
-
-        styled_df = df.style.applymap(apply_styles, subset=df.columns[1:])
-        return styled_df
-
-    data = load_data()
-    if data is not None:
-        st.title("Dashboard de Flujo de Stock")
-
-        st.sidebar.header("Filtros")
-        
-        safety_stock = st.sidebar.number_input("Ingresa el Stock de Seguridad:", min_value=0, value=0)
-        
-        grouping_option = st.sidebar.radio(
-            "Selecciona el nivel de agrupación:",
-            ["Super Familia", "Familia", "Codigo Producto"]
+    with tab3:
+        st.plotly_chart(
+            create_stock_flow_chart(
+                processed_data,
+                'monthly' if view_type == "Mensual" else 'quarterly'
+            ),
+            use_container_width=True
         )
 
-        view_option = st.sidebar.radio(
-            "Selecciona la vista de la tabla:",
-            ["Trimestres", "Meses"]
-        )
+        # Más visualizaciones según necesites
 
-        if grouping_option == "Super Familia":
-            superfamily_filter = st.sidebar.multiselect(
-                "Selecciona Super Familia(s):", options=data["Super Familia"].unique(), default=data["Super Familia"].unique()
-            )
-            filtered_data = data[data["Super Familia"].isin(superfamily_filter)]
+        with tab4:
+            st.markdown("<h3 style='text-align: center'>KPIs Avanzados</h3>", unsafe_allow_html=True)
+            if not processed_data:
+                st.info("No hay datos para calcular KPIs Avanzados.")
+            else:
+                adv_kpis = calculate_advanced_kpis(processed_data, data_filtered)
 
-        elif grouping_option == "Familia":
-            superfamily_filter = st.sidebar.selectbox(
-                "Selecciona una Super Familia:", options=data["Super Familia"].unique()
-            )
-            family_filter = st.sidebar.multiselect(
-                "Selecciona Familia(s):", 
-                options=data[data["Super Familia"] == superfamily_filter]["Familia"].unique(),
-                default=data[data["Super Familia"] == superfamily_filter]["Familia"].unique()
-            )
-            filtered_data = data[(data["Super Familia"] == superfamily_filter) & (data["Familia"].isin(family_filter))]
+                # Mostramos en 3 métricas
+                colA, colB, colC = st.columns(3)
+                # Tasa de Agotamiento
+                tasa_agot = f"{adv_kpis['stockout_rate']:.2f}%"
+                colA.metric(
+                    label="Tasa de Agotamiento",
+                    value=tasa_agot,
+                    help="Porcentaje de meses (en el horizonte) con stock > 0"
+                )
+                # Fill Rate
+                fill_rate_val = f"{adv_kpis['fill_rate']:.2f}%"
+                colB.metric(
+                    label="Nivel de Servicio (Fill Rate)",
+                    value=fill_rate_val,
+                    help="Porcentaje de demanda teóricamente atendida (aprox)."
+                )
+                # Días de Inventario
+                days_inventory = f"{adv_kpis['days_of_inventory']:.1f}"
+                colC.metric(
+                    label="Días de Inventario",
+                    value=days_inventory,
+                    help="Cuántos días de cobertura habría según demanda anualizada."
+                )
 
-        elif grouping_option == "Codigo Producto":
-            family_filter = st.sidebar.selectbox(
-                "Selecciona una Familia:", options=data["Familia"].unique()
-            )
-            product_filter = st.sidebar.multiselect(
-                "Selecciona Codigo Producto(s):", 
-                options=data[data["Familia"] == family_filter]["Codigo Producto"].unique(),
-                default=data[data["Familia"] == family_filter]["Codigo Producto"].unique()
-            )
-            filtered_data = data[(data["Familia"] == family_filter) & (data["Codigo Producto"].isin(product_filter))]
+                st.write("Estos KPIs se basan en una **aproximación**: si necesitas un cálculo más preciso (sobre todo para Fill Rate), deberías simular la demanda satisfecha mes a mes con la demanda real/proyectada.")
 
-        grouped_data = process_data(filtered_data, safety_stock, grouping_option, view_option)
-        grouped_data['Stock Total'] = grouped_data['Stock Total'] + safety_stock
-        tab1, tab2 = st.tabs(["Tabla Consolidada", "Gráficos"])
 
-        with tab1:
-            st.subheader("Stock de Seguridad y Datos Consolidados")
-            simulated_data = simulate_stock_with_safety(grouped_data, safety_stock)
+if __name__ == "__main__":
+    main()
+
+    
         
-            if view_option == "Trimestres":
-                columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre'] if view_option == "Trimestres" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']) if col in simulated_data.columns]
-            elif view_option == "Meses":
-                 columns_to_display = [col for col in (['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total'] + ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] if view_option == "Meses" else ['Super Familia', 'Familia', 'Codigo Producto', 'Stock Total', 'Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre']) if col in simulated_data.columns]
-            formatted_data = format_numbers(simulated_data[columns_to_display])
-            styled_data = style_data(formatted_data)
-
-            st.write(styled_data, unsafe_allow_html=True)
 
 
-            st.download_button(
-                label="Descargar Datos en Excel",
-                data=download_excel(simulated_data),
-                file_name="Simulacion_Stock.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-           )
+    
 
-        with tab2:
-            st.subheader("Visualización de Datos")
+                
 
-            metric_option = st.selectbox(
-                "Selecciona la métrica a graficar:",
-                ["Stock Total", "Primer Trimestre", "Segundo Trimestre", "Tercer Trimestre", "Cuarto Trimestre"] if view_option == "Trimestres" else ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-            ) 
 
-            fig = px.bar(
-                grouped_data,
-                x=grouping_option,
-                y=metric_option,
-                title=f"{metric_option} por {grouping_option}",
-                labels={metric_option: "Stock", grouping_option: grouping_option},
-                text_auto=True
-          )
-
-            st.plotly_chart(fig, use_container_width=True)

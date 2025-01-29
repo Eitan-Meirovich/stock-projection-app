@@ -1,8 +1,16 @@
 import pandas as pd
+from datetime import datetime, date
+import os
 
+# Obtener la fecha actual
+current_date = datetime.now()
+forecast_start = pd.Timestamp(current_date.year, current_date.month, 1) + pd.DateOffset(months=1)
+forecast_periods = 15  # 15 meses móviles
+
+forecast_dir = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Bebé'
+forecast_path ='Proyección_15MM_Bebé.csv'
 # Cargar las proyecciones SARIMA (corregidas al primer día del mes)
-forecast_path = r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Bebé\2025_forecast_Bebe.csv'  # Ruta del archivo generado
-forecast_df = pd.read_csv(forecast_path)
+forecast_df = pd.read_csv(os.path.join(forecast_dir, forecast_path))
 
 # Convertir fechas a formato datetime y periodos mensuales
 forecast_df['Date'] = pd.to_datetime(forecast_df['Date'])
@@ -63,8 +71,8 @@ family_forecast_df.to_csv(r'C:\Users\Ukryl\stock-projection-app\demand_forecasti
 product_forecast_df.to_csv(r'C:\Users\Ukryl\stock-projection-app\demand_forecasting_project\data\processed\Bebé\forecast_product_2025.csv', index=False)
 
 # Mostrar resultados
-print("Proyección por Familia (2024):")
+print("Proyección por Familia (2025):")
 print(family_forecast_df.head())
 
-print("\nProyección por Producto (2024):")
+print("\nProyección por Producto (2025):")
 print(product_forecast_df.head())

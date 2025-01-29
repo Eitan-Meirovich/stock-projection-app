@@ -7,7 +7,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Añadir el directorio raíz del proyecto al PATH
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-from src.data.data_processor import DataProcessor
+from demand_forecasting_project.src.data.data_processor import DataProcessor
 
 # Configuración de rutas
 raw_data_path = os.path.join("data", "input")
@@ -22,7 +22,7 @@ processor = DataProcessor(
 )
 
 # Nombre del archivo de entrada
-input_file = "data.xlsx"
+input_file = "data_venta.xlsx"
 
 # Ejecutar procesamiento
 processor.process(input_file)
