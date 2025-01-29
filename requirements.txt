@@ -131,7 +131,6 @@ ply==3.11
 pmdarima==2.0.4
 prison==0.2.1
 prophet==1.1.5
-protobuf==4.25.5
 psycopg2-binary==2.9.10
 PuLP==2.9.0
 pyarrow==11.0.0
