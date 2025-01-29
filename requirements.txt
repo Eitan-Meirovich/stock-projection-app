@@ -26,7 +26,6 @@ clyent==1.2.1
 cmdstanpy==1.2.2
 colorama==0.4.6
 colorlog==6.9.0
-conda-repo-cli==1.0.75
 conda-verify==3.4.2
 ConfigUpdater==3.2
 connexion==2.14.2
