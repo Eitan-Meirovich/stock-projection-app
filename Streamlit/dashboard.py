@@ -578,12 +578,14 @@ def main():
     # ------------------------------------------------
     #  PESTAÑAS DE VISUALIZACIÓN
     # ------------------------------------------------
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "📈Tabla Resumida", 
         "📈Tabla Detallada",
         "📊Gráfica", 
         "📊Acumulados (YTD)",
-        "⚙️ Control de Modelo"
+        "⚙️ Control de Modelo",
+        "📊 Comportamiento de Producto"
+
     ])
 
     # =========================================================
@@ -839,6 +841,72 @@ def main():
         file_name="Proyecciones_y_Ventas.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+
+    with tab6:
+        st.header("📊 Comportamiento de Productos dentro de una Familia")
+        
+        # Filtro de familia
+        family_filter = st.multiselect(
+            "Selecciona una Familia:", 
+            options=sorted(data["Familia"].unique()),
+            default=[]
+        )
+
+        if not family_filter:
+            st.warning("Por favor selecciona al menos una familia para visualizar los datos.")
+            return
+
+        # Filtro de vista
+        view_type = st.radio("Seleccionar vista:", ["Meses", "Trimestres"], horizontal=True)
+
+        # Filtrar datos por familia
+        filtered_data = data[data["Familia"].isin(family_filter)].copy()
+
+        if view_type == "Trimestres":
+            filtered_data["Trimestre"] = ((filtered_data["Mes"] - 1) // 3) + 1
+            time_col = "Trimestre"
+        else:
+            time_col = "Mes"
+        
+        # Tabla de datos
+        table_data = filtered_data.groupby(["Codigo Producto", time_col], as_index=False).agg({
+            "Venta 2023": "sum", "Venta 2024": "sum", "Venta 2025": "sum", "Projection 2025": "sum"
+        })
+        
+        pivot_table = table_data.pivot(index="Codigo Producto", columns=time_col, values=["Venta 2023", "Venta 2024", "Venta 2025", "Projection 2025"])
+        pivot_table.columns = [f"{col[0]} - {col[1]}" for col in pivot_table.columns]
+        pivot_table.reset_index(inplace=True)
+        
+        st.dataframe(pivot_table, use_container_width=True)
+
+        # KPIs
+        total_ventas_2025 = filtered_data["Venta 2025"].sum()
+        total_proyeccion_2025 = filtered_data["Projection 2025"].sum()
+        growth_vs_2024 = ((total_ventas_2025 - filtered_data["Venta 2024"].sum()) / filtered_data["Venta 2024"].sum()) * 100 if filtered_data["Venta 2024"].sum() else 0
+        
+        st.metric(label="Total Venta 2025", value=f"{total_ventas_2025:,.0f} Kg")
+        st.metric(label="Proyección 2025", value=f"{total_proyeccion_2025:,.0f} Kg")
+        st.metric(label="Crecimiento vs 2024", value=f"{growth_vs_2024:.2f}%")
+
+        # Gráfico de comportamiento
+        st.subheader("Evolución de Ventas y Proyección")
+        df_melted = filtered_data.melt(
+            id_vars=["Codigo Producto", time_col],
+            value_vars=["Venta 2023", "Venta 2024", "Venta 2025", "Projection 2025"],
+            var_name="Ratio",
+            value_name="Valor"
+        )
+        
+        fig = px.line(
+            df_melted,
+            x=time_col,
+            y="Valor",
+            color="Codigo Producto",
+            line_group="Codigo Producto",
+            title="Tendencia de Ventas y Proyecciones",
+            markers=True
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
 if __name__ == "__main__":
     main()
