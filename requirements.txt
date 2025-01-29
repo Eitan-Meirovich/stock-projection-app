@@ -136,7 +136,6 @@ psycopg2-binary==2.9.10
 PuLP==2.9.0
 pyarrow==11.0.0
 pyasn1-modules==0.2.8
-pycurl==7.45.2
 pydantic==2.9.2
 pydantic_core==2.23.4
 PyDispatcher==2.0.5
